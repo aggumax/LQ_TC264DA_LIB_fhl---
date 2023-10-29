@@ -6,7 +6,7 @@
 
 uint8  Start_Flag2=0;                    //启动标志
 
-/*PID数值定义*/
+/*****PID数值定义*****/
 #define DUOJI_Kp      0;
 #define DUOJI_Ki      0;
 #define DUOJI_Kd      0;                //舵机PID参数
@@ -14,11 +14,12 @@ uint8  Start_Flag2=0;                    //启动标志
 float PINHEN_KP = 0, PINHEN_KI = 0, PINHEN_KD = 0;//平衡环PID调节,动量轮，pitch角度环
 float D_SPEED_KP=0, D_SPEED_KI=0,D_SPEED_KD=0;    //动量轮电机速度环PID控制
 
-/*数值定义*/
+/*****数值定义*****/
 int PWM_D, PWM_S;                       //PWM_D是动量轮电机控制左右倾斜，S是动量轮电机速度环正反馈
 int encValue_D = 0;                     //储存动量轮的编码器数值
 float Pitch_LINGDIAN = 1.5, Pitch_error2 = 0.00;//规定pitch的角度零点 1.5
 float Pitch_ERROR = 0.00;               //Pitch偏差值
+
 
 unsigned char Flag_Stop2 = 0;
 
