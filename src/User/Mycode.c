@@ -31,12 +31,15 @@ void Balance_FHL(void)
 
     /*动量轮控制*/
     PWM_D = Balance_X(Pitch,Pitch_ERROR,gyro[0]);
-    PWM_S = SPEED_Control()
+    PWM_S = SPEED_Control(encValue_D);
 }
 
 
 /*******************
 平衡PID控制函数，角度环
+Angle:  Pitch的角度
+Angle_Zero:  Pitch的偏差值
+Gyro;  Gyro[]
  ******************/
 float Balance_X(float Angle,float Angle_Zero,float Gyro)
 {
@@ -54,6 +57,7 @@ float Balance_X(float Angle,float Angle_Zero,float Gyro)
 
 /*******************
 动量轮速度PI控制,速度正反馈环
+encValueD;  编码器的数值(速度环)
  ******************/
 float SPEED_Control(int encValueD)
 {
