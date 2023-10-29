@@ -20,6 +20,8 @@ int encValue_D = 0;                     //储存动量轮的编码器数值
 float Pitch_LINGDIAN = 1.5, Pitch_error2 = 0.00;//规定pitch的角度零点 1.5
 float Pitch_ERROR = 0.00;               //Pitch偏差值
 
+unsigned char Flag_Stop2 = 0;
+
 
 void Balance_FHL(void)
 {
@@ -29,7 +31,7 @@ void Balance_FHL(void)
 
     /*动量轮控制*/
     PWM_D = Balance_X(Pitch,Pitch_ERROR,gyro[0]);
-//    PWM_S =
+    PWM_S = SPEED_Control()
 }
 
 
@@ -55,7 +57,18 @@ float Balance_X(float Angle,float Angle_Zero,float Gyro)
  ******************/
 float SPEED_Control(int encValueD)
 {
+    static float Encoder,Encoder_Integral;
+    float Velocity,Encoder_Least;
 
+    Encoder_Least = encValueD;                                                  //速度滤波
+    Encoder *= 0.7;                                                           //一阶低通滤波器
+    Encoder += Encoder_Least*0.3;                                             //一阶低通滤波器
+    Encoder_Integral += Encoder;                                              //积分出位移
+    if(Encoder_Integral > +2000) Encoder_Integral = +2000;                    //积分限幅
+    if(Encoder_Integral < -2000) Encoder_Integral = -2000;                    //积分限幅
+    Velocity = Encoder * D_SPEED_KP + Encoder_Integral * D_SPEED_KI/100;      //获取最终数值
+    if(Flag_Stop2==1) Encoder_Integral=0,Encoder=0,Velocity=0;                 //停止时参数清零
+    return Velocity;
 }
 
 
