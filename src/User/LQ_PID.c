@@ -51,8 +51,8 @@ float constrain_float(float amt, float low, float high)
 void PidInit(pid_param_t * pid)
 {
 	pid->kp        = 10;
-	pid->ki        = 0.5;
-	pid->kd        = 0;
+	pid->ki        = 1;
+	pid->kd        = 1;
 	pid->imax      = 0;
 	pid->out_p     = 0;
 	pid->out_i     = 0;
@@ -138,8 +138,8 @@ float FHL_PID(pid_param_t * pid, float error)
     //计算PID的输出
     pid->out = pid->kp* error + pid->ki* pid->integrator + pid->kd* pid->last_derivative;
     //PID输出限制
-    if(pid->out > 5500)
-        pid->out = 5500;
+    if(pid->out > 6500)
+        pid->out = 6500;
     if(pid->out < 2000)
         pid->out = 2000;
     //传入这次误差给下次误差
@@ -174,13 +174,12 @@ void Text_PID(pid_param_t * pid)
         encValue5 = ENC_GetCounter(ENC6_InPut_P20_3);
 
         pid->qiwan_speed = 1000;
-
         pid->shiji_speed = encValue5;
         error = pid->qiwan_speed - pid->shiji_speed;
+
         duty = FHL_PID(&PID,error);
-//        duty = PidIncCtrl(&PID,error);
-        if(duty > 5500)
-            duty = 5500;
+        if(duty > 8000)
+            duty = 8000;
         if(duty < 500)
             duty = 500;
 
@@ -198,7 +197,7 @@ void Text_PID(pid_param_t * pid)
         sprintf(tbt, "Enc5: %05d;", encValue5);
         TFTSPI_P8X16Str(0, 5, tbt,u16WHITE,u16BLACK);       //字符串显示
         LED_Ctrl(LED0,RVS);        //电平翻转,LED闪烁
-        delayms(100);
+//        delayms(100);
 
     }
 
