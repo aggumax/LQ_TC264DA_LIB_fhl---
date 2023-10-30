@@ -124,8 +124,6 @@ float FHL_PID(pid_param_t * pid, float error)
 {
     float last_error=0;
 
-    //计算误差
-//    error = pid->qiwan_speed - pid->shiji_speed;
     //计算积分项
     pid->integrator += error;
     //限制积分
@@ -138,8 +136,8 @@ float FHL_PID(pid_param_t * pid, float error)
     //计算PID的输出
     pid->out = pid->kp* error + pid->ki* pid->integrator + pid->kd* pid->last_derivative;
     //PID输出限制
-    if(pid->out > 6500)
-        pid->out = 6500;
+    if(pid->out > 8000)
+        pid->out = 8000;
     if(pid->out < 2000)
         pid->out = 2000;
     //传入这次误差给下次误差
@@ -174,7 +172,8 @@ void Text_PID(pid_param_t * pid)
         encValue5 = ENC_GetCounter(ENC6_InPut_P20_3);
 
         pid->qiwan_speed = 1000;
-        pid->shiji_speed = encValue5;
+        // pid->shiji_speed = encValue5;
+        pid->shiji_speed = sqrt(encValue5);
         error = pid->qiwan_speed - pid->shiji_speed;
 
         duty = FHL_PID(&PID,error);
@@ -202,6 +201,5 @@ void Text_PID(pid_param_t * pid)
     }
 
 }
-
 
 

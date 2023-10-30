@@ -111,7 +111,7 @@ int core0_main (void)
 	mutexCpu0TFTIsOk=0;         // CPU1： 0占用/1释放 TFT
 
 //	LQ_GPT_4mini512TFT();  //读取并显示编码器的值
-//	Text_PID();
+	Text_PID();
 //  LQ_Atom_Motor_8chPWM();
 //	LQ_ATom_Servo_2chPWM();
 //	BD1202_test();
