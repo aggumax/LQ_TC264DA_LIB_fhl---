@@ -96,9 +96,9 @@ int core0_main (void)
     ServoInit();                //舵机PWM初始化
     /* ����ͷ��ʼ�� */
     //CAMERA_Init(50);
-    CCU6_InitConfig(CCU60, CCU6_Channel0, 500000);  // 调电机的时候注释掉
-    CCU6_InitConfig(CCU60, CCU6_Channel1, 20);      // ��ˢ�������
-    CCU6_InitConfig(CCU61, CCU6_Channel0, 5000);    // ��������
+//    CCU6_InitConfig(CCU60, CCU6_Channel0, 500000);  // 调电机的时候注释掉
+//    CCU6_InitConfig(CCU60, CCU6_Channel1, 20);      // ��ˢ�������
+//    CCU6_InitConfig(CCU61, CCU6_Channel0, 5000);    // ��������
     // 串口P14.0管脚输出,P14.1输入，波特率115200
 	UART_InitConfig(UART0_RX_P14_1,UART0_TX_P14_0, 115200);
 	TFTSPI_CLS(u16BLACK);         //清屏
@@ -131,6 +131,7 @@ int core0_main (void)
 	*******************************************************************************/
 
 	//  TestMotorBLDC();
+
 
 
     while (1)	//��ѭ��

@@ -48,5 +48,6 @@ float constrain_float(float amt, float low, float high);
 float PidLocCtrl(pid_param_t * pid, float error);
 
 float PidIncCtrl(pid_param_t * pid, float error);
+void Text_PID(pid_param_t * pid);
 
 #endif /* SRC_APPSW_TRICORE_USER_LQ_PID_H_ */

@@ -79,33 +79,33 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := LQ_TC264DA_LIB_fhl
+BUILD_ARTIFACT_NAME := LQ_TC264DA_LIB_FHL2
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 SECONDARY_SIZE += \
-LQ_TC264DA_LIB_fhl.siz \
+LQ_TC264DA_LIB_FHL2.siz \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: LQ_TC264DA_LIB_fhl.elf secondary-outputs
+main-build: LQ_TC264DA_LIB_FHL2.elf secondary-outputs
 
 # Tool invocations
-LQ_TC264DA_LIB_fhl.elf: $(OBJS) makefile $(OPTIONAL_TOOL_DEPS)
+LQ_TC264DA_LIB_FHL2.elf: $(OBJS) makefile $(OPTIONAL_TOOL_DEPS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: TASKING Linker'
-	cctc --lsl-file="../Lcf_Tasking_Tricore_Tc.lsl" -Wl-Oc -Wl-OL -Wl-Ot -Wl-Ox -Wl-Oy "F:\TC264\十七届平衡单车演示程序\LQ_TC264无刷电机演示程序\LQ_TC264DA_LIB_fhl\src\APP\LQ_MPU6050_DMP.o" -Wl--map-file="LQ_TC264DA_LIB_fhl.map" -Wl-mc -Wl-mf -Wl-mi -Wl-mk -Wl-ml -Wl-mm -Wl-md -Wl-mr -Wl-mu --no-warnings= -Wl--error-limit=42 -lcs_fpu -lfp_fpu -lrt --lsl-core=vtc --exceptions --strict --anachronisms --force-c++ -Ctc26xb -o"LQ_TC264DA_LIB_fhl.elf" -Wl-o"LQ_TC264DA_LIB_fhl.hex:IHEX" $(OBJS)
+	cctc --lsl-file="../Lcf_Tasking_Tricore_Tc.lsl" -Wl-Oc -Wl-OL -Wl-Ot -Wl-Ox -Wl-Oy "F:\TC264\十七届平衡单车演示程序\LQ_TC264无刷电机演示程序\LQ_TC264DA_LIB_fhl - 副本\src\APP\LQ_MPU6050_DMP.o" -Wl--map-file="LQ_TC264DA_LIB_FHL2.map" -Wl-mc -Wl-mf -Wl-mi -Wl-mk -Wl-ml -Wl-mm -Wl-md -Wl-mr -Wl-mu --no-warnings= -Wl--error-limit=42 -lcs_fpu -lfp_fpu -lrt --lsl-core=vtc --exceptions --strict --anachronisms --force-c++ -Ctc26xb -o"LQ_TC264DA_LIB_FHL2.elf" -Wl-o"LQ_TC264DA_LIB_FHL2.hex:IHEX" $(OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-LQ_TC264DA_LIB_fhl.siz: LQ_TC264DA_LIB_fhl.elf makefile $(OPTIONAL_TOOL_DEPS)
+LQ_TC264DA_LIB_FHL2.siz: LQ_TC264DA_LIB_FHL2.elf makefile $(OPTIONAL_TOOL_DEPS)
 	@echo 'Invoking: Print Size'
-	elfsize  "LQ_TC264DA_LIB_fhl.elf"
+	elfsize  "LQ_TC264DA_LIB_FHL2.elf"
 	@echo 'Finished building: $@'
 	@echo ' '
 

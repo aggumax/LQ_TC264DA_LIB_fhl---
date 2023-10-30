@@ -19,7 +19,7 @@ int PWM_D, PWM_S;                       //PWM_D是动量轮电机控制左右倾斜，S是动量
 int encValue_D = 0;                     //储存动量轮的编码器数值
 float Pitch_LINGDIAN = 1.5, Pitch_error2 = 0.00;//规定pitch的角度零点 1.5
 float Pitch_ERROR = 0.00;               //Pitch偏差值
-short 
+short MotorDutyQ = 0;                   //动量轮电机驱动占空比数值
 
 unsigned char Flag_Stop2 = 0;           //停车标识
 
@@ -31,14 +31,17 @@ void Balance_FHL(void)
     encValue_D = ENC_GetCounter(ENC6_InPut_P20_3);    //动量轮的数值
 
     /*////动量轮控制////*/
-    PWM_D = Balance_X(Pitch,Pitch_ERROR,gyro[0]);
-    PWM_S = SPEED_Control(-encValue_D);
-
+    PWM_D = Balance_X(Pitch,Pitch_ERROR,gyro[0]);    //动量轮平衡控制
+    PWM_S = SPEED_Control(-encValue_D);              //动量轮速度控制
     /*动量轮限幅*/
     if(PWM_D>8000) 
         PWM_D=8000;
     if(PWM_D<-8000) 
         PWM_D=-8000;
+
+    MotorDutyQ = PWM_D + PWM_S;
+    if(MotorDutyQ > 8000) MotorDutyQ = 8000;
+    if(MotorDutyQ < -8000) MotorDutyQ = -8000;
     /*////停车控制////*/
     if((Pitch > 23) || (Pitch < -23)) //摔倒判断
     Flag_Stop2 = 1;

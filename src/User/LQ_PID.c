@@ -200,11 +200,9 @@ void Text_PID(pid_param_t * pid)
         LED_Ctrl(LED0,RVS);        //µçÆ½·­×ª,LEDÉÁË¸
         delayms(100);
 
-
-
-
-
     }
 
 }
+
+
 
