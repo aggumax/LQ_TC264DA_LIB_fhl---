@@ -4,8 +4,6 @@
 #include "LQ_MPU6050_DMP.h"
 #include "LQ_GPT_mini512.h"
 
-uint8  Start_Flag2=0;                    //启动标志
-
 /*****PID数值定义*****/
 #define DUOJI_Kp      0;
 #define DUOJI_Ki      0;
@@ -21,8 +19,9 @@ float Pitch_LINGDIAN = 1.5, Pitch_error2 = 0.00;//规定pitch的角度零点 1.5
 float Pitch_ERROR = 0.00;               //Pitch偏差值
 short MotorDutyQ = 0;                   //动量轮电机驱动占空比数值
 
-unsigned char Flag_Stop2 = 0;           //停车标识
-
+/*****标识定义*****/
+unsigned char Stop_Flag = 0;           //停车标识
+uint8  Start_Flag2=0;                  //启动标志
 
 void Balance_FHL(void)
 {
@@ -30,7 +29,8 @@ void Balance_FHL(void)
     ENC_InitConfig(ENC6_InPut_P20_3, ENC6_Dir_P20_0);//读取编码器数据
     encValue_D = ENC_GetCounter(ENC6_InPut_P20_3);    //动量轮的数值
 
-    /*////动量轮控制////*/
+    /*动量轮控制*/
+    Pitch_ERROR = Pitch - Pitch_LINGDIAN;
     PWM_D = Balance_X(Pitch,Pitch_ERROR,gyro[0]);    //动量轮平衡控制
     PWM_S = SPEED_Control(-encValue_D);              //动量轮速度控制
     /*动量轮限幅*/
@@ -42,12 +42,12 @@ void Balance_FHL(void)
     MotorDutyQ = PWM_D + PWM_S;
     if(MotorDutyQ > 8000) MotorDutyQ = 8000;
     if(MotorDutyQ < -8000) MotorDutyQ = -8000;
-    /*////停车控制////*/
+    /*停车控制*/
     if((Pitch > 23) || (Pitch < -23)) //摔倒判断
-    Flag_Stop2 = 1;
-    if(Flag_Stop2 == 1)               //停车
+        Stop_Flag = 1;
+    if(Stop_Flag == 1)               //停车
     {
-
+        MotorDutyQ=0;
     }
 }
 
@@ -81,14 +81,14 @@ float SPEED_Control(int encValueD)
     static float Encoder,Encoder_Integral;
     float Velocity,Encoder_Least;
 
-    Encoder_Least = encValueD;                                                  //速度滤波
+    Encoder_Least = encValueD;                                                //速度滤波
     Encoder *= 0.7;                                                           //一阶低通滤波器
     Encoder += Encoder_Least*0.3;                                             //一阶低通滤波器
     Encoder_Integral += Encoder;                                              //积分出位移
     if(Encoder_Integral > +2000) Encoder_Integral = +2000;                    //积分限幅
     if(Encoder_Integral < -2000) Encoder_Integral = -2000;                    //积分限幅
     Velocity = Encoder * D_SPEED_KP + Encoder_Integral * D_SPEED_KI/100;      //获取最终数值
-    if(Flag_Stop2==1) Encoder_Integral=0,Encoder=0,Velocity=0;                 //停止时参数清零
+    if(Stop_Flag==1) Encoder_Integral=0,Encoder=0,Velocity=0;                 //停止时参数清零
     
     return Velocity;
 }
