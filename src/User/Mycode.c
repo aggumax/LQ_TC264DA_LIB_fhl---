@@ -18,10 +18,13 @@ int encValue_D = 0;                     //储存动量轮的编码器数值
 float Pitch_LINGDIAN = 1.5, Pitch_error2 = 0.00;//规定pitch的角度零点 1.5
 float Pitch_ERROR = 0.00;               //Pitch偏差值
 short MotorDutyQ = 0;                   //动量轮电机驱动占空比数值
+short MotorDutyH = 0;
+int DUOJI_PWM;                          //舵机的PWM
 
 /*****标识定义*****/
 unsigned char Stop_Flag = 0;           //停车标识
 uint8  Start_Flag2=0;                  //启动标志
+#define Servo_Mid  1950                //舵机自行中值
 
 void Balance_FHL(void)
 {
@@ -42,12 +45,17 @@ void Balance_FHL(void)
     MotorDutyQ = PWM_D + PWM_S;
     if(MotorDutyQ > 8000) MotorDutyQ = 8000;
     if(MotorDutyQ < -8000) MotorDutyQ = -8000;
+    /*舵机控制*/
+    if(Pitch > 5){
+        DUOJI_PWM = 2000;
+    }
     /*停车控制*/
     if((Pitch > 23) || (Pitch < -23)) //摔倒判断
         Stop_Flag = 1;
     if(Stop_Flag == 1)               //停车
     {
         MotorDutyQ=0;
+        MotorDutyH=0;
     }
 }
 
