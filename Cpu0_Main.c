@@ -42,6 +42,8 @@
 #include "LQ_CAMERA.h"
 #include "BD_1202V2.h"
 
+#include "Mycode.h"
+
 App_Cpu0 g_AppCpu0;                       // brief CPU 0 global data
 IfxCpu_mutexLock mutexCpu0InitIsOk = 1;   // CPU0 初始化完成标志位
 volatile char mutexCpu0TFTIsOk=0;         // CPU1 0占用/1释放 TFT
@@ -111,10 +113,11 @@ int core0_main (void)
 	mutexCpu0TFTIsOk=0;         // CPU1： 0占用/1释放 TFT
 
 //	LQ_GPT_4mini512TFT();  //读取并显示编码器的值
-	Text_PID();
+//	Text_PID();
 //  LQ_Atom_Motor_8chPWM();
 //	LQ_ATom_Servo_2chPWM();
 //	BD1202_test();
+//	tteex();
 
 	/********************************************************************************
 
@@ -131,7 +134,7 @@ int core0_main (void)
 	*******************************************************************************/
 
 	//  TestMotorBLDC();
-//	Balance();
+
 
 
 
@@ -152,6 +155,7 @@ int core0_main (void)
 //        Vbat = ADC_Read(ADC7);  // ����Դ��ѹ
 //        Vat = Vbat * 11 / 25;   // ��ѹת��\
 
+        Balance();
         sprintf((char*)txt,"Yaw:%.02f",Yaw);//偏航角
         TFTSPI_P8X16Str(0,2,txt,u16WHITE,u16BLACK);//
         sprintf((char*)txt,"Roll:%.02f",Roll);//俯仰角

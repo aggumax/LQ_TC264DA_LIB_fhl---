@@ -138,8 +138,8 @@ float FHL_PID(pid_param_t * pid, float error)
     //PID输出限制
     if(pid->out > 8000)
         pid->out = 8000;
-    if(pid->out < 2000)
-        pid->out = 2000;
+    if(pid->out < 0)
+        pid->out = 0;
     //传入这次误差给下次误差
     last_error = error;
 
@@ -171,8 +171,8 @@ void Text_PID(pid_param_t * pid)
         ENC_InitConfig(ENC4_InPut_P02_8, ENC4_Dir_P33_5);//读取编码器数据
         encValue5 = ENC_GetCounter(ENC4_InPut_P02_8);
 
-        pid->qiwan_speed = 2000;
-         pid->shiji_speed = encValue5;
+        pid->qiwan_speed = 1000;
+        pid->shiji_speed = encValue5;
 //        pid->shiji_speed = sqrt(encValue5);
         error = pid->qiwan_speed - pid->shiji_speed;
 
@@ -201,5 +201,34 @@ void Text_PID(pid_param_t * pid)
     }
 
 }
+
+float FHL_PID2(float error, float KP, float KI, float KD)
+{
+    float last_error=0;
+    float Integrator=0;                     //动量轮积分项
+    float Derivative;
+    float OUT;
+    //计算积分项
+    Integrator += error;
+    //限制积分
+    if(Integrator > 5500)
+        Integrator = 5500;
+    if(Integrator < 500)
+        Integrator = 500;
+    //计算微分项
+    Derivative = error - last_error;
+    //计算PID的输出
+    OUT = KP* error + KI* Integrator + KD* Derivative;
+    //PID输出限制
+    if(OUT > 8000)
+        OUT = 8000;
+    if(OUT < 2000)
+        OUT = 2000;
+    //传入这次误差给下次误差
+    last_error = error;
+
+    return OUT;
+}
+
 
 

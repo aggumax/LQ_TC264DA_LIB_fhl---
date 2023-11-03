@@ -1,21 +1,27 @@
 #include "Mycode.h"
+#include "stdio.h"
+
 #include "LQ_GPT12_ENC.h"
 #include "LQ_CCU6.h"
 #include "LQ_MPU6050_DMP.h"
 #include "LQ_GPT_mini512.h"
+#include "LQ_Atom_Motor.h"
+#include "LQ_TFT18.h"
+#include "LQ_PID.h"
+#include "LQ_GTM.h"
 
 /*****PID数值定义*****/
 #define DUOJI_Kp      0;
 #define DUOJI_Ki      0;
 #define DUOJI_Kd      0;                //舵机PID参数
 
-float PINHEN_KP = 0, PINHEN_KI = 0, PINHEN_KD = 0;//平衡环PID调节,动量轮，pitch角度环
+float PINHEN_KP = 10, PINHEN_KI = 1, PINHEN_KD = 1;//平衡环PID调节,动量轮，pitch角度环
 float D_SPEED_KP=0, D_SPEED_KI=0;    //动量轮电机速度环PID控制
 
 /*****数值定义*****/
 int PWM_D, PWM_S;                       //PWM_D是动量轮电机控制左右倾斜，S是动量轮电机速度环正反馈
 int encValue_D = 0;                     //储存动量轮的编码器数值
-float Pitch_LINGDIAN = 1.5, Pitch_error2 = 0.00;//规定pitch的角度零点 1.5
+float Pitch_LINGDIAN = 7.0, Pitch_error2 = 0.00;//规定pitch的角度零点 1.5
 float Pitch_ERROR = 0.00;               //Pitch偏差值
 short MotorDutyQ = 0;                   //动量轮电机驱动占空比数值
 short MotorDutyH = 0;
@@ -28,6 +34,8 @@ uint8  Start_Flag2=0;                  //启动标志
 
 void Balance_FHL(void)
 {
+    while(1){
+    /*数据处理*/
     LQ_DMP_Read();                                   //陀螺仪数据读取，pitch左正右负
     ENC_InitConfig(ENC6_InPut_P20_3, ENC6_Dir_P20_0);//读取编码器数据
     encValue_D = ENC_GetCounter(ENC6_InPut_P20_3);    //动量轮的数值
@@ -46,9 +54,7 @@ void Balance_FHL(void)
     if(MotorDutyQ > 8000) MotorDutyQ = 8000;
     if(MotorDutyQ < -8000) MotorDutyQ = -8000;
     /*舵机控制*/
-    if(Pitch > 5){
-        DUOJI_PWM = 2000;
-    }
+
     /*停车控制*/
     if((Pitch > 23) || (Pitch < -23)) //摔倒判断
         Stop_Flag = 1;
@@ -57,6 +63,12 @@ void Balance_FHL(void)
         MotorDutyQ=0;
         MotorDutyH=0;
     }
+
+    /*输出控制*/
+    MotorCtrl1();
+    /*显示*/
+
+  }
 }
 
 

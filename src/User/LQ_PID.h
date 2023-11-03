@@ -49,5 +49,6 @@ float PidLocCtrl(pid_param_t * pid, float error);
 
 float PidIncCtrl(pid_param_t * pid, float error);
 void Text_PID(pid_param_t * pid);
+float FHL_PID2(float error, float KP, float KI, float KD);
 
 #endif /* SRC_APPSW_TRICORE_USER_LQ_PID_H_ */
