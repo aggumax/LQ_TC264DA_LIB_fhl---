@@ -168,12 +168,12 @@ void Text_PID(pid_param_t * pid)
 
     while(1)
     {
-        ENC_InitConfig(ENC6_InPut_P20_3, ENC6_Dir_P20_0);//读取编码器数据
-        encValue5 = ENC_GetCounter(ENC6_InPut_P20_3);
+        ENC_InitConfig(ENC4_InPut_P02_8, ENC4_Dir_P33_5);//读取编码器数据
+        encValue5 = ENC_GetCounter(ENC4_InPut_P02_8);
 
-        pid->qiwan_speed = 1000;
-        // pid->shiji_speed = encValue5;
-        pid->shiji_speed = sqrt(encValue5);
+        pid->qiwan_speed = 2000;
+         pid->shiji_speed = encValue5;
+//        pid->shiji_speed = sqrt(encValue5);
         error = pid->qiwan_speed - pid->shiji_speed;
 
         duty = FHL_PID(&PID,error);
