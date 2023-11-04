@@ -7,5 +7,6 @@ void Balance_FHL_Chuangji(void);
 unsigned short Balance_PID1(float qiwan_Angle, float shiji_Angle);
 
 void Motor_konzhi(unsigned short motor);
+void Servo_konzhi(int panduan);
 
 #endif

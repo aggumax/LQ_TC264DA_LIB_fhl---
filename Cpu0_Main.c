@@ -110,7 +110,7 @@ int core0_main (void)
 //	LQ_GPT_4mini512TFT();  //读取并显示编码器的值
 //	Text_P ID();
 //  LQ_Atom_Motor_8chPWM();
-//	LQ_ATom_Servo_2chPWM();
+    // LQ_ATom_Servo_2chPWM();
 //	BD1202_test();
 
     while (1)	//��ѭ��
