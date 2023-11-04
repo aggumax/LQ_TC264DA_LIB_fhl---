@@ -34,6 +34,7 @@
 #include "../Driver/LQ_UART.h"
 #include "LQ_Inductor.h"
 #include <LQ_GPIO.h>
+#include "LQ_Atom_Motor.h"
 volatile uint8 Game_Over = 0; // 小车完成全部任务，停车
 sint16 ServoDuty = Servo_Center_Mid;
 sint16 MotorDuty1 = 500;      // 电机驱动占空比数值
@@ -163,7 +164,7 @@ void MotorCtrl1(sint32 motor1)
 {
     if (motor1 > 0)
     {
-        ATOM_PWM_SetDuty(MOTOR4_P, motor1, MOTOR_FREQUENCY);
+        ATOM_PWM_SetDuty(ATOMPWM0, motor1, MOTOR_FREQUENCY);
         IfxPort_setPinLow(&MODULE_P21, 3);
     }
     else

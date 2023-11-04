@@ -348,3 +348,5 @@ src/User/LQ_MotorServo.o :	f:/TC264/ Æ∆ﬂΩÏ∆Ω∫‚µ•≥µ—› æ≥Ã–Ú/LQ_TC264ŒﬁÀ¢µÁª˙—› æ≥
 f:/TC264/ Æ∆ﬂΩÏ∆Ω∫‚µ•≥µ—› æ≥Ã–Ú/LQ_TC264ŒﬁÀ¢µÁª˙—› æ≥Ã–Ú/LQ_TC264DA_LIB_fhl\ -\ ∏±±æ/Libraries/iLLD/TC26B/Tricore/_PinMap/IfxScu_PinMap.h :
 src/User/LQ_MotorServo.o :	f:/TC264/ Æ∆ﬂΩÏ∆Ω∫‚µ•≥µ—› æ≥Ã–Ú/LQ_TC264ŒﬁÀ¢µÁª˙—› æ≥Ã–Ú/LQ_TC264DA_LIB_fhl\ -\ ∏±±æ/Libraries/iLLD/TC26B/Tricore/Src/Std/IfxSrc.h
 f:/TC264/ Æ∆ﬂΩÏ∆Ω∫‚µ•≥µ—› æ≥Ã–Ú/LQ_TC264ŒﬁÀ¢µÁª˙—› æ≥Ã–Ú/LQ_TC264DA_LIB_fhl\ -\ ∏±±æ/Libraries/iLLD/TC26B/Tricore/Src/Std/IfxSrc.h :
+src/User/LQ_MotorServo.o :	f:/TC264/ Æ∆ﬂΩÏ∆Ω∫‚µ•≥µ—› æ≥Ã–Ú/LQ_TC264ŒﬁÀ¢µÁª˙—› æ≥Ã–Ú/LQ_TC264DA_LIB_fhl\ -\ ∏±±æ/src/APP/LQ_Atom_Motor.h
+f:/TC264/ Æ∆ﬂΩÏ∆Ω∫‚µ•≥µ—› æ≥Ã–Ú/LQ_TC264ŒﬁÀ¢µÁª˙—› æ≥Ã–Ú/LQ_TC264DA_LIB_fhl\ -\ ∏±±æ/src/APP/LQ_Atom_Motor.h :

@@ -32,6 +32,7 @@
 #include "LQ_GPIO_LED.h"
 #include "LQ_GPT12_ENC.h"
 #include "LQ_Balance.h"
+#include "Mycode.h"
 volatile sint16 ECPULSE1 = 0;          // 速度全局变量
 volatile sint16 ECPULSE2 = 0;          // 速度全局变量
 volatile sint32 RAllPulse = 0;          // 速度全局变量
@@ -153,7 +154,8 @@ void CCU61_CH1_IRQHandler (void)
     IfxCcu6_clearInterruptStatusFlag(&MODULE_CCU61, IfxCcu6_InterruptSource_t13PeriodMatch);
 
     /* 用户代码 */
-    LED_Ctrl(LED0, RVS);        // 电平翻转,LED闪烁
+//    LED_Ctrl(LED0, RVS);        // 电平翻转,LED闪烁
+//    Balance_FHL();
 }
 
 /*************************************************************************

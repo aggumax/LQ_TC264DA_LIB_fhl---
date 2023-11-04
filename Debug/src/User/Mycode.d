@@ -6,6 +6,8 @@ src/User/Mycode.o :	f:/TC264/AURIX-Studio-1.9.4/plugins/com.infineon.aurix.tools
 f:/TC264/AURIX-Studio-1.9.4/plugins/com.infineon.aurix.tools_1.9.4/build_system/tools/Compilers/Tasking_1.1r8/ctc/include/stdio.h :
 src/User/Mycode.o :	f:/TC264/AURIX-Studio-1.9.4/plugins/com.infineon.aurix.tools_1.9.4/build_system/tools/Compilers/Tasking_1.1r8/ctc/include/stdarg.h
 f:/TC264/AURIX-Studio-1.9.4/plugins/com.infineon.aurix.tools_1.9.4/build_system/tools/Compilers/Tasking_1.1r8/ctc/include/stdarg.h :
+src/User/Mycode.o :	../src/User/LQ_Balance.h
+../src/User/LQ_Balance.h :
 src/User/Mycode.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/Driver/LQ_GPT12_ENC.h
 f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/Driver/LQ_GPT12_ENC.h :
 src/User/Mycode.o :	f:/TC264/AURIX-Studio-1.9.4/plugins/com.infineon.aurix.tools_1.9.4/build_system/tools/Compilers/Tasking_1.1r8/ctc/include/stdint.h
@@ -272,3 +274,9 @@ src/User/Mycode.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_
 f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Cpu/Std/IfxCpu.h :
 src/User/Mycode.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Port/Std/IfxPort.h
 f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Port/Std/IfxPort.h :
+src/User/Mycode.o :	../src/User/LQ_MotorServo.h
+../src/User/LQ_MotorServo.h :
+src/User/Mycode.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/_PinMap/IfxGtm_PinMap.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/_PinMap/IfxGtm_PinMap.h :
+src/User/Mycode.o :	../Libraries/iLLD/TC26B/Tricore/Cpu/Std/Platform_Types.h
+../Libraries/iLLD/TC26B/Tricore/Cpu/Std/Platform_Types.h :

@@ -1,6 +1,7 @@
 #include "Mycode.h"
 #include "stdio.h"
 
+#include "LQ_Balance.h"
 #include "LQ_GPT12_ENC.h"
 #include "LQ_CCU6.h"
 #include "LQ_MPU6050_DMP.h"
@@ -9,52 +10,72 @@
 #include "LQ_TFT18.h"
 #include "LQ_PID.h"
 #include "LQ_GTM.h"
+#include "LQ_MotorServo.h"
+#include "LQ_Atom_Motor.h"
 
 /*****PID数值定义*****/
-#define DUOJI_Kp      0;
+#define DUOJI_Kp      0;    //舵机PID参数
 #define DUOJI_Ki      0;
-#define DUOJI_Kd      0;                //舵机PID参数
+#define DUOJI_Kd      0;
 
-float PINHEN_KP = 10, PINHEN_KI = 1, PINHEN_KD = 1;//平衡环PID调节,动量轮，pitch角度环
-float D_SPEED_KP=0, D_SPEED_KI=0;    //动量轮电机速度环PID控制
+float PINHEN_KP = 0;       //平衡环PID调节,动量轮，pitch角度环
+float PINHEN_KI = 0;
+float PINHEN_KD = 0;
+
+float D_SPEED_KP=0;         //动量轮电机速度环PID控制
+float D_SPEED_KI=0;
+
+float  JSD_kp=3000;               //串级PID的角速度环
+float  JSD_ki=0;
+float  JSD_kd=60;
+float  JSD_pwm_out =0;
+float  JSD_jifen   =0;
+float  JSD_weifen  =0;
+
 
 /*****数值定义*****/
 int PWM_D, PWM_S;                       //PWM_D是动量轮电机控制左右倾斜，S是动量轮电机速度环正反馈
 int encValue_D = 0;                     //储存动量轮的编码器数值
-float Pitch_LINGDIAN = 7.0, Pitch_error2 = 0.00;//规定pitch的角度零点 1.5
+int encValue_H = 0;                     //储存电机的编码器数值
+float Pitch_LINGDIAN = 1.5, Pitch_error2 = 0.00;//规定pitch的角度零点 1.5
 float Pitch_ERROR = 0.00;               //Pitch偏差值
 short MotorDutyQ = 0;                   //动量轮电机驱动占空比数值
-short MotorDutyH = 0;
+short MotorDutyH = 0;                   //电机驱动占空比数值
 int DUOJI_PWM;                          //舵机的PWM
+short  Velocity2;                        // 速度，定时周期内为60个脉冲，龙邱带方向512编码器
+unsigned short Dduty=0;                  //动量轮pwm值
+
 
 /*****标识定义*****/
 unsigned char Stop_Flag = 0;           //停车标识
 uint8  Start_Flag2=0;                  //启动标志
-#define Servo_Mid  1950                //舵机自行中值
+#define Servo_Mid  950                //舵机自行中值
+int fanxian_flag;                      //倾斜方向标志
 
-void Balance_FHL(void)
+void Balance_FHL_Bingji(void)
 {
-    while(1){
-    /*数据处理*/
     LQ_DMP_Read();                                   //陀螺仪数据读取，pitch左正右负
-    ENC_InitConfig(ENC6_InPut_P20_3, ENC6_Dir_P20_0);//读取编码器数据
+//    ENC_InitConfig(ENC6_InPut_P20_3, ENC6_Dir_P20_0);//读取编码器数据
     encValue_D = ENC_GetCounter(ENC6_InPut_P20_3);    //动量轮的数值
+    encValue_H = ENC_GetCounter(ENC5_InPut_P10_3);
 
     /*动量轮控制*/
-    Pitch_ERROR = Pitch - Pitch_LINGDIAN;
-    PWM_D = Balance_X(Pitch,Pitch_ERROR,gyro[0]);    //动量轮平衡控制
-    PWM_S = SPEED_Control(-encValue_D);              //动量轮速度控制
+    Pitch_ERROR = Pitch_LINGDIAN - Pitch;
+    PWM_D = X_balance_Control(Pitch,Pitch_ERROR,gyro[0]);    //动量轮平衡控制
+    PWM_S = -Velocity_Control(-encValue_D);              //动量轮速度环正反馈
+    MotorDutyQ = -(PWM_D-PWM_S);
     /*动量轮限幅*/
-    if(PWM_D>8000) 
-        PWM_D=8000;
-    if(PWM_D<-8000) 
-        PWM_D=-8000;
+    if(MotorDutyQ>8000)PWM_D=8000;
+    else if(MotorDutyQ<-8000)PWM_D=-8000;
+    else if(MotorDutyQ<-0) MotorDutyQ -=800;      //死区
+    else if(MotorDutyQ>0) MotorDutyQ +=800;
 
-    MotorDutyQ = PWM_D + PWM_S;
-    if(MotorDutyQ > 8000) MotorDutyQ = 8000;
-    if(MotorDutyQ < -8000) MotorDutyQ = -8000;
+    if((MotorDutyQ<1000)&&(MotorDutyQ>-1000))
+        MotorDutyQ=0;
     /*舵机控制*/
 
+    /*电机控制*/
+    MotorDutyH = SBB_Get_MotorPI(encValue_H, Velocity2)/2;
     /*停车控制*/
     if((Pitch > 23) || (Pitch < -23)) //摔倒判断
         Stop_Flag = 1;
@@ -64,53 +85,70 @@ void Balance_FHL(void)
         MotorDutyH=0;
     }
 
-    /*输出控制*/
-    MotorCtrl1();
-    /*显示*/
-
-  }
+    /*输出*/
+//    ServoCtrl();
+    MotorCtrl(MotorDutyQ, MotorDutyH);
 }
 
-
-/*******************
-平衡PID控制函数，角度环
-Angle:  Pitch的角度
-Angle_Zero:  Pitch的偏差值
-Gyro:  Gyro[]
- ******************/
-float Balance_X(float Angle,float Angle_Zero,float Gyro)
+/********************************
+串级平衡函数
+********************************/
+void Balance_FHL_Chuangji(void)
 {
-    float PWM, Bias;
-    static float error;
-    Bias=Angle-Angle_Zero;      //获取偏差
-    error+=Bias;                //偏差累积
-    if(error>+30) error=+30;
-    if(error>-30) error=-30;    //积分限幅
-    PWM = PINHEN_KP*Bias + PINHEN_KI*error + PINHEN_KD*Gyro;//获取最终数值
+    float shiji_Angle;
 
-    return PWM;
+    encValue_D = ENC_GetCounter(ENC6_InPut_P20_3);    //动量轮的数值
+    LQ_DMP_Read();               //读取pitch，左正右负
+    if(Pitch>0) fanxian_flag=0;  //左倾判断
+    if(Pitch<0) fanxian_flag=1;  //右倾判断
+
+    if(fanxian_flag == 0)
+    {
+        shiji_Angle =-Pitch;
+        Dduty = Balance_PID1(Pitch_LINGDIAN, shiji_Angle);
+        Motor_konzhi(Dduty);
+    }
+    if(fanxian_flag == 1)
+    {
+        shiji_Angle =Pitch;
+        Dduty = Balance_PID1(Pitch_LINGDIAN, shiji_Angle);
+        Motor_konzhi(Dduty);
+    }
+
+
+
 }
 
-
-/*******************
-动量轮速度PI控制,速度正反馈环
-encValueD:  编码器的数值(速度环)
- ******************/
-float SPEED_Control(int encValueD)
+/****************************************************************
+串级角速度环
+****************************************************************/
+unsigned short Balance_PID1(float qiwan_Angle, float shiji_Angle)
 {
-    static float Encoder,Encoder_Integral;
-    float Velocity,Encoder_Least;
+    float last_error=0, error;
+    error = qiwan_Angle - shiji_Angle;
 
-    Encoder_Least = encValueD;                                                //速度滤波
-    Encoder *= 0.7;                                                           //一阶低通滤波器
-    Encoder += Encoder_Least*0.3;                                             //一阶低通滤波器
-    Encoder_Integral += Encoder;                                              //积分出位移
-    if(Encoder_Integral > +2000) Encoder_Integral = +2000;                    //积分限幅
-    if(Encoder_Integral < -2000) Encoder_Integral = -2000;                    //积分限幅
-    Velocity = Encoder * D_SPEED_KP + Encoder_Integral * D_SPEED_KI/100;      //获取最终数值
-    if(Stop_Flag==1) Encoder_Integral=0,Encoder=0,Velocity=0;                 //停止时参数清零
+    JSD_jifen +=error;
+    if(JSD_jifen > 8000) JSD_jifen=8000;
+    if(JSD_jifen < 100) JSD_jifen=100;
+
+    JSD_weifen = error - last_error;
+
+    JSD_pwm_out = JSD_kp* error + JSD_ki* JSD_jifen + JSD_kd* JSD_weifen;
+    if(JSD_pwm_out > 8000) JSD_pwm_out=8000;
+    if(JSD_pwm_out < 0)    JSD_pwm_out=0;
     
-    return Velocity;
+    return JSD_pwm_out;
+}
+
+void Motor_konzhi(unsigned short motor)
+{
+    ATOM_PWM_InitConfig(ATOMPWM0, 5000, 12500);
+    ATOM_PWM_InitConfig(ATOMPWM1, 5000, 12500);
+
+    if(fanxian_flag == 0)
+    ATOM_PWM_SetDuty(ATOMPWM1, motor, 12500);//电机左转
+    if(fanxian_flag == 1)
+    ATOM_PWM_SetDuty(ATOMPWM0, motor, 12500);//电机右转
 }
 
 
