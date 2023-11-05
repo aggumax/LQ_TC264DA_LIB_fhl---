@@ -96,7 +96,7 @@ int core0_main (void)
     ServoInit();                //舵机PWM初始化
     // 串口P14.0管脚输出,P14.1输入，波特率115200
 	UART_InitConfig(UART0_RX_P14_1,UART0_TX_P14_0, 115200);
-	TFTSPI_CLS(u16BLACK);         //清屏
+	TFTSPI_CLS(u16WHITE);         //清屏
 	// 开启CPU总中断
 	IfxCpu_enableInterrupts();
 
@@ -113,21 +113,25 @@ int core0_main (void)
     // LQ_ATom_Servo_2chPWM();
 //	BD1202_test();
 
-    while (1)	//��ѭ��
+    while (1)	//主循环
     {
-        TFTSPI_P8X16Str(0, 0, "GUMAX_DMP", u16BLACK, u16YELLOW);
+        TFTSPI_P8X16Str(3, 0, "GUMAX_FHL", u16BLACK, u16YELLOW);
 
-
+        LQ_DMP_Read();
         Balance_FHL_Chuangji();
-        sprintf((char*)txt,"Yaw:%.02f",Yaw);//偏航角
-        TFTSPI_P8X16Str(0,2,txt,u16WHITE,u16BLACK);//
-        sprintf((char*)txt,"Roll:%.02f",Roll);//俯仰角
-        TFTSPI_P8X16Str(0,3,txt,u16WHITE,u16BLACK);
+//        sprintf((char*)txt,"Yaw:%.02f",Yaw);//偏航角
+//        TFTSPI_P8X16Str(0,2,txt,u16BLACK,u16WHITE);//
+//        sprintf((char*)txt,"Roll:%.02f",Roll);//俯仰角
+//        TFTSPI_P8X16Str(0,3,txt,u16BLACK,u16WHITE);
         sprintf((char*)txt,"Pitch:%.02f",Pitch);//倾斜角
+        TFTSPI_P8X16Str(0,3,txt,u16BLACK,u16WHITE);
+        float GG =gyro[0];
+        sprintf((char*)txt,"gyro:%.02f",GG);//
+        TFTSPI_P8X16Str(0,4,txt,u16BLACK,u16WHITE);
+//        printf("%.2f,%.2f,%.2f\n", Roll,Pitch,Yaw);
 
-        TFTSPI_P8X16Str(0,4,txt,u16WHITE,u16BLACK);
-        printf("%.2f,%.2f,%.2f\n", Roll,Pitch,Yaw);
 
+        TFTSPI_P8X16Str(12,9,"@FHL",u16BLACK,u16WHITE);
     }
 }
 

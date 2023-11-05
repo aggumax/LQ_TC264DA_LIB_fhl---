@@ -12,6 +12,8 @@
 #include "LQ_GTM.h"
 #include "LQ_MotorServo.h"
 #include "LQ_Atom_Motor.h"
+#include "LQ_GPIO_KEY.h"
+#include "LQ_STM.h"
 
 /*****PID数值定义*****/
 #define DUOJI_Kp      0;    //舵机PID参数
@@ -25,19 +27,20 @@ float PINHEN_KD = 0;
 float D_SPEED_KP=0;         
 float D_SPEED_KI=0;
 /*串级PID的角速度环*/
-float  JSD_kp=3000;               
+float  JSD_kp=100;
 float  JSD_ki=0;
-float  JSD_kd=60;
-float  JSD_pwm_out =0;
-float  JSD_jifen   =0;
-float  JSD_weifen  =0;
+float  JSD_kd=50;
+/*串级PID的角度环*/
+float  JD_kp=5;
+float  JD_ki=0;
+float  JD_kd=0;
 
 
 /*****数值定义*****/
 int PWM_D, PWM_S;                       //PWM_D是动量轮电机控制左右倾斜，S是动量轮电机速度环正反馈
 int encValue_D = 0;                     //储存动量轮的编码器数值
 int encValue_H = 0;                     //储存电机的编码器数值
-float Pitch_LINGDIAN = 1.5, Pitch_error2 = 0.00;//规定pitch的角度零点 1.5
+float Pitch_LINGDIAN = 0.5, Pitch_error2 = 0.00;//规定pitch的角度零点 1.5
 float Pitch_ERROR = 0.00;               //Pitch偏差值
 short MotorDutyQ = 0;                   //动量轮电机驱动占空比数值
 short MotorDutyH = 0;                   //电机驱动占空比数值
@@ -45,11 +48,13 @@ short MotorDutyH = 0;                   //电机驱动占空比数值
 short  Velocity2;                        // 速度，定时周期内为60个脉冲，龙邱带方向512编码器
 unsigned short Dduty=0;                  //动量轮pwm值
 unsigned short Fduty=0;                  //舵机pwm值
+float GYRO = 0;
 
 
 /*****标识定义*****/
-unsigned char Stop_Flag = 0;           //停车标识
-uint8  Start_Flag2=0;                  //启动标志
+int Stop_Flag = 0;           //停车标识
+//uint8  Start_Flag2=0;                  //启动标识
+int  Start_Flag2=0;                  //启动标识
 #define Servo_Mid  950                //舵机自行中值
 int fanxian_flag;                      //倾斜方向标志
 
@@ -96,66 +101,95 @@ void Balance_FHL_Bingji(void)
 ********************************/
 void Balance_FHL_Chuangji(void)
 {
-    float shiji_Angle;
-    float cha;
-
+//    float shiji_Angle;
+//    float cha;
+    GPIO_KEY_Init();
     encValue_D = ENC_GetCounter(ENC6_InPut_P20_3);    //动量轮的数值
     LQ_DMP_Read();               //读取pitch，左正右负
+
     if(Pitch>Pitch_LINGDIAN) fanxian_flag=0;  //左倾判断
     if(Pitch<Pitch_LINGDIAN) fanxian_flag=1;  //右倾判断
 
     if(fanxian_flag == 0)
     {
-        shiji_Angle =-Pitch;
-        Dduty = Balance_PID1(Pitch_LINGDIAN, shiji_Angle);
-        cha = Pitch - Pitch_LINGDIAN;
-        Fduty= cha * 10;
+        GYRO = -gyro[0];
+        Dduty = Balance_PID_CJ(Balance_PID_CJJD(0,-Pitch),GYRO);
     }
     if(fanxian_flag == 1)
     {
-        shiji_Angle =Pitch;
-        Dduty = Balance_PID1(Pitch_LINGDIAN, shiji_Angle);   
-        cha = Pitch_LINGDIAN - Pitch;
-        Fduty= cha * 10;
+        GYRO = gyro[0];
+        Dduty = Balance_PID_CJ(Balance_PID_CJJD(0,Pitch),GYRO);
     }
 
-    if(Fduty > 1090) Fduty = 1090;//舵机数值限幅
-    if(Fduty < 810) Fduty = 810;
+    Stop_Flag = Down_flag();
+    if(Stop_Flag == 1) Dduty=0;              //停车
 
     Motor_konzhi(Dduty);
-    Servo_konzhi(Fduty);
 }
 
 /****************************************************************
 串级角速度环
-qiwan_Angle:期望陀螺仪保持的角度
-shiji_Angle:陀螺仪实际的角度
+qiwan_Angle:期望陀螺仪保持的角速度
+shiji_Angle:陀螺仪实际的角速度
+
+@输出：电机的PWM值
 ****************************************************************/
-unsigned short Balance_PID1(float qiwan_Angle, float shiji_Angle)
+unsigned short Balance_PID_CJ(float qiwan_Angle, float shiji_Angle)
 {
     float last_error=0, error;
     error = qiwan_Angle - shiji_Angle;
+    float  JSD_pwm_out =0;
+    float  JSD_jifen   =0;
+    float  JSD_weifen  =0;
 
     JSD_jifen +=error;
-    if(JSD_jifen > 8000) JSD_jifen=8000;
-    if(JSD_jifen < 100) JSD_jifen=100;
+    if(JSD_jifen > 2000) JSD_jifen=2000;
+    if(JSD_jifen < 0) JSD_jifen=0;
 
     JSD_weifen = error - last_error;
 
     JSD_pwm_out = JSD_kp* error + JSD_ki* JSD_jifen + JSD_kd* JSD_weifen;
     if(JSD_pwm_out > 8000) JSD_pwm_out=8000;
     if(JSD_pwm_out < 0)    JSD_pwm_out=0;
+    last_error = error;
     
     return JSD_pwm_out;
 }
+
+/*******************************************************
+串级角度环
+
+********************************************************/
+unsigned short Balance_PID_CJJD(float qiwan, float shiji)
+{
+    float last_error=0, error;
+    float  JD_out =0;
+    float  JD_jifen   =0;
+    float  JD_weifen  =0;
+    error = qiwan - shiji;
+
+    JD_jifen +=error;
+    if(JD_jifen > 2000) JD_jifen=2000;
+    if(JD_jifen < 0) JD_jifen=0;
+
+    JD_weifen = error - last_error;
+
+    JD_out = JD_kp* error + JD_ki* JD_jifen + JD_kd* JD_weifen;
+    if(JD_out > 8000) JD_out=8000;
+    if(JD_out < 0)    JD_out=0;
+    last_error = error;
+
+    return JD_out;
+}
+
 /*************************************
 电机控制(正反转)
 输入:电机的pwm值
 **************************************/
 void Motor_konzhi(unsigned short motor)
 {
-    ATOM_PWM_InitConfig(ATOMPWM0, 5000, 12500);
-    ATOM_PWM_InitConfig(ATOMPWM1, 5000, 12500);
+    ATOM_PWM_InitConfig(ATOMPWM0, 0, 12500);
+    ATOM_PWM_InitConfig(ATOMPWM1, 0, 12500);
 
     if(fanxian_flag == 0)
     ATOM_PWM_SetDuty(ATOMPWM1, motor, 12500);//电机左转
@@ -163,14 +197,28 @@ void Motor_konzhi(unsigned short motor)
     ATOM_PWM_SetDuty(ATOMPWM0, motor, 12500);//电机右转
 }
 
-void Servo_konzhi(int panduan)
+void Servo_konzhi(unsigned short panduan)
 {
     ATOM_PWM_InitConfig(ATOMSERVO1, Servo_Mid, 100);//舵机频率为100HZ，初始值为1.5ms中值
 	// ATOM_PWM_InitConfig(ATOMSERVO2, Servo_Mid, 100);//舵机理论范围为：0.5ms--2.5ms，大多舵机实际比这个范围小
     
     // ATOM_PWM_SetDuty(ATOMSERVO2, duty, 100);//驱动两个舵机
-	ATOM_PWM_SetDuty(ATOMSERVO1, duty, 100);
+	ATOM_PWM_SetDuty(ATOMSERVO1, panduan, 100);
 
+}
+
+/*************
+ 摔倒判断
+**************/
+int Down_flag()
+{
+    int flag;
+    if(Pitch>23 || Pitch<-23)
+        flag=1;
+    else flag=0;
+//    delayms(20);
+
+    return flag;
 }
 
 

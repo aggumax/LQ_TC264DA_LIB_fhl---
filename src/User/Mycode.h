@@ -4,9 +4,11 @@
 void Balance_FHL_Bingji(void);
 void Balance_FHL_Chuangji(void);
 
-unsigned short Balance_PID1(float qiwan_Angle, float shiji_Angle);
+unsigned short Balance_PID_CJ(float qiwan_Angle, float shiji_Angle);
+unsigned short Balance_PID_CJJD(float qiwan, float shiji);
+int Down_flag();
 
 void Motor_konzhi(unsigned short motor);
-void Servo_konzhi(int panduan);
+void Servo_konzhi(unsigned short panduan);
 
 #endif
