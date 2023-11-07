@@ -106,7 +106,7 @@ int core0_main (void)
 	// 切记CPU0,CPU1...不可以同时开启屏幕显示，否则冲突不显示ʾ
 	mutexCpu0TFTIsOk=0;         // CPU1： 0占用/1释放 TFT
     /*中断函数*/
-//    CCU6_InitConfig(CCU61, CCU6_Channel0,1000);//1ms
+   CCU6_InitConfig(CCU61, CCU6_Channel0,50000);//50ms
     ATOM_PWM_InitConfig(ATOMPWM2, 5000, 12500);
     ATOM_PWM_InitConfig(ATOMSERVO1, 950, 100);//舵机频率为100HZ，初始值为1.5ms中值
     ATOM_PWM_InitConfig(ATOMPWM0, 0, 12500);
@@ -124,7 +124,6 @@ int core0_main (void)
 
         LQ_DMP_Read();
         Balance_FHL_Chuangji();
-        Balance_DJ();
 //        sprintf((char*)txt,"Yaw:%.02f",Yaw);//偏航角
 //        TFTSPI_P8X16Str(0,2,txt,u16BLACK,u16WHITE);//
 //        sprintf((char*)txt,"Roll:%.02f",Roll);//俯仰角

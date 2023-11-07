@@ -118,6 +118,8 @@ void CCU61_CH0_IRQHandlerXXXXXXXXXXXXXXX (void)
 
     /* 用户代码 */
 //    Balance_FHL_Chuangji();
+    Balance_DJ();
+    LED_Ctrl(LED0, RVS);        // 电平翻转,LED闪烁
     /* 获取编码器值 */
 }
 
