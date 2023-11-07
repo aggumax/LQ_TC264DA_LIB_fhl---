@@ -119,10 +119,10 @@ void LQ_Atom_Motor_8chPWM(void)
 			duty=5000;
 		}
 
-		ATOM_PWM_SetDuty(ATOMPWM0, duty, 12500);//驱动四个电机
-		ATOM_PWM_SetDuty(ATOMPWM1, 5000, 12500);
+//		ATOM_PWM_SetDuty(ATOMPWM0, duty, 12500);//驱动四个电机
+//		ATOM_PWM_SetDuty(ATOMPWM1, 5000, 12500);
 		ATOM_PWM_SetDuty(ATOMPWM2, duty, 12500);
-		ATOM_PWM_SetDuty(ATOMPWM3, 5000, 12500);
+//		ATOM_PWM_SetDuty(ATOMPWM3, 5000, 12500);
 //		ATOM_PWM_SetDuty(ATOMPWM4, duty, 12500);
 //		ATOM_PWM_SetDuty(ATOMPWM5, duty, 12500);
 //		ATOM_PWM_SetDuty(ATOMPWM6, duty, 12500);

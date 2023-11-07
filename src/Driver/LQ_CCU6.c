@@ -117,6 +117,7 @@ void CCU61_CH0_IRQHandlerXXXXXXXXXXXXXXX (void)
     IfxCcu6_clearInterruptStatusFlag(&MODULE_CCU61, IfxCcu6_InterruptSource_t12PeriodMatch);
 
     /* 用户代码 */
+//    Balance_FHL_Chuangji();
     /* 获取编码器值 */
 }
 
