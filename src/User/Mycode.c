@@ -231,7 +231,7 @@ void Balance_DJ(void)
 {
 
     LQ_DMP_Read();
-
+    Hduty = 6000;
 //    GPIO_KEY_Init();
 //    if(KEY_Read(KEY0)==0)
 //        Hduty -=100;
