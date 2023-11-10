@@ -264,3 +264,23 @@ src/APP/LQ_Atom_Motor.o :	../src/APP/LQ_GPIO_LED.h
 ../src/APP/LQ_GPIO_LED.h :
 src/APP/LQ_Atom_Motor.o :	../src/APP/LQ_TFT18.h
 ../src/APP/LQ_TFT18.h :
+src/APP/LQ_Atom_Motor.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/User/Mycode.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/User/Mycode.h :
+src/APP/LQ_Atom_Motor.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/Driver/LQ_GPT12_ENC.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/Driver/LQ_GPT12_ENC.h :
+src/APP/LQ_Atom_Motor.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Gpt12/Std/IfxGpt12.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Gpt12/Std/IfxGpt12.h :
+src/APP/LQ_Atom_Motor.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/_Impl/IfxGpt12_cfg.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/_Impl/IfxGpt12_cfg.h :
+src/APP/LQ_Atom_Motor.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/Service/CpuGeneric/_Utilities/Ifx_Assert.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/Service/CpuGeneric/_Utilities/Ifx_Assert.h :
+src/APP/LQ_Atom_Motor.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Scu/Std/IfxScuCcu.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Scu/Std/IfxScuCcu.h :
+src/APP/LQ_Atom_Motor.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/Infra/Sfr/TC26B/_Reg/IfxGpt12_reg.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/Infra/Sfr/TC26B/_Reg/IfxGpt12_reg.h :
+src/APP/LQ_Atom_Motor.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/Infra/Sfr/TC26B/_Reg/IfxGpt12_regdef.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/Infra/Sfr/TC26B/_Reg/IfxGpt12_regdef.h :
+src/APP/LQ_Atom_Motor.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/_PinMap/IfxGpt12_PinMap.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/_PinMap/IfxGpt12_PinMap.h :
+src/APP/LQ_Atom_Motor.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Port/Std/IfxPort.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Port/Std/IfxPort.h :

@@ -33,6 +33,7 @@
 #include "LQ_GPT12_ENC.h"
 #include "LQ_Balance.h"
 #include "Mycode.h"
+#include "LQ_Atom_Motor.h"
 volatile sint16 ECPULSE1 = 0;          // 速度全局变量
 volatile sint16 ECPULSE2 = 0;          // 速度全局变量
 volatile sint32 RAllPulse = 0;          // 速度全局变量
@@ -118,6 +119,8 @@ void CCU61_CH0_IRQHandlerXXXXXXXXXXXXXXX (void)
 
     /* 用户代码 */
 //    Balance_FHL_Chuangji();
+//    Balance_DJ();
+//    LED_Ctrl(LED0, RVS);        // 电平翻转,LED闪烁
     /* 获取编码器值 */
 }
 
@@ -136,7 +139,7 @@ void CCU61_CH0_IRQHandler (void)
 //    ECPULSE1 = ENC_GetCounter(ENC2_InPut_P33_7); // 左电机 母板上编码器1，小车前进为负值
 //    ECPULSE2 = ENC_GetCounter(ENC4_InPut_P02_8); // 右电机 母板上编码器2，小车前进为正值
 //    RAllPulse += ECPULSE2;                       //
-    Balance();
+    LQ_Atom_Motor_8chPWM();
 }
 /*************************************************************************
  *  函数名称：void CCU61_CH1_IRQHandler(void)

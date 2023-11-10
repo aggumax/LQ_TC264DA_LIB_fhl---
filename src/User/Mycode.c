@@ -17,11 +17,11 @@
 
 /*****PID数值定义*****/
 /*串级PID的角速度环*/
-float  JSD_kp=265;//1875
-float  JSD_ki=35;
-float  JSD_kd=-0.05;
+float  JSD_kp=0;//1875
+float  JSD_ki=0;
+float  JSD_kd=0;
 /*串级PID的角度环*/
-float  JD_kp=0.5;//5
+float  JD_kp=0;//5
 float  JD_ki=0;//1
 float  JD_kd=0;
 /*串级PID的速度环*/
@@ -44,6 +44,7 @@ unsigned short Dduty=0;                  //动量轮pwm值
 unsigned short Fduty=0;                  //舵机pwm值
 unsigned short Hduty=6000;
 float GYRO = 0;
+float YB=0;
 
 
 /*****标识定义*****/
@@ -62,7 +63,7 @@ void Balance_FHL_Chuangji(void)
 //    float shiji_Angle;
 //    float cha;
     char txt[16];
-//    GPIO_KEY_Init();
+    GPIO_KEY_Init();
     ENC_InitConfig(ENC4_InPut_P02_8, ENC4_Dir_P33_5);
     encValue_D = ENC_GetCounter(ENC4_InPut_P02_8);    //动量轮的数值
     LQ_DMP_Read();               //读取pitch，左正右负
@@ -70,19 +71,31 @@ void Balance_FHL_Chuangji(void)
     if(Pitch>Pitch_LINGDIAN) fanxian_flag=0;  //左倾判断
     if(Pitch<Pitch_LINGDIAN) fanxian_flag=1;  //右倾判断
 
+    if(KEY_Read(KEY2)==0)//按下KEY2键
+        YB +=10;
+    if(KEY_Read(KEY1)==0)//按下KEY1键
+        YB -=10;
+    if(KEY_Read(KEY0)==0)//按下KEY0键
+        JSD_kp = YB;
+
     if(fanxian_flag == 0)
     {
         GYRO = -gyro[0];
-        Dduty = Balance_PID_CJ(Balance_PID_CJJD(Balance_PID_CJSD(0, encValue_D), -Pitch),GYRO);
+        Dduty = Balance_PID_CJ(Balance_PID_CJJD(0,-Pitch),GYRO);
     }
     if(fanxian_flag == 1)
     {
         GYRO = gyro[0];
-        Dduty = Balance_PID_CJ(Balance_PID_CJJD(Balance_PID_CJSD(0,-encValue_D),Pitch),GYRO);;
+        Dduty = Balance_PID_CJ(Balance_PID_CJJD(0, Pitch),GYRO);
     }
 
     sprintf((char*)txt,"encValue:%05d",encValue_D);//
+    TFTSPI_P8X16Str(0,3,txt,u16WHITE,u16BLACK);
+    sprintf((char*)txt,"KP:%05f",JSD_kp);//
+    TFTSPI_P8X16Str(0,5,txt,u16WHITE,u16BLACK);
+    sprintf((char*)txt,"YB:%f",YB);//
     TFTSPI_P8X16Str(0,6,txt,u16WHITE,u16BLACK);
+
 
     Stop_Flag = Down_flag();
     if(Stop_Flag == 1) Dduty=0;              //停车
@@ -112,7 +125,7 @@ unsigned short Balance_PID_CJ(float qiwan_Angle, float shiji_Angle)
     JSD_weifen = error - last_error;
 
     JSD_pwm_out = JSD_kp* error + JSD_ki* JSD_jifen + JSD_kd* JSD_weifen;
-    if(JSD_pwm_out > 6500) JSD_pwm_out=6500;
+    if(JSD_pwm_out > 30000) JSD_pwm_out=30000;
     if(JSD_pwm_out < 0)    JSD_pwm_out=0;
     last_error = error;
     
@@ -182,6 +195,8 @@ unsigned short Balance_PID_CJSD(float qiwan, float shiji)
 **************************************/
 void Motor_konzhi(unsigned short motor)
 {
+    ATOM_PWM_InitConfig(ATOMPWM0, 0, 12500);
+    ATOM_PWM_InitConfig(ATOMPWM1, 0, 12500);
 
     if(fanxian_flag == 0)
     ATOM_PWM_SetDuty(ATOMPWM1, motor, 12500);//电机左转
