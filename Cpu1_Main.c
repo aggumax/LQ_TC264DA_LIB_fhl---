@@ -92,6 +92,7 @@ QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ*/
 
 #include "src/APP/LQ_TFT2.h"
 #include "src/Main/Main.h"
+#include "LQ_CAMERA.h"
 
 // 定时器 5ms和50ms标志位
 volatile uint8 cpu1Flage5ms = 0;
@@ -125,6 +126,6 @@ int core1_main (void)
 */
     while(1)//主循环
     {
-
+//        Test_CAMERA();
     }
 }

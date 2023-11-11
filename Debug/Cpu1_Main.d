@@ -96,3 +96,7 @@ f:/TC264/AURIX-Studio-1.9.4/plugins/com.infineon.aurix.tools_1.9.4/build_system/
 ../Libraries/iLLD/TC26B/Tricore/Cpu/Std/Platform_Types.h :
 /Cpu1_Main.o :	../src/Driver/include.h
 ../src/Driver/include.h :
+/Cpu1_Main.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_CAMERA.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_CAMERA.h :
+/Cpu1_Main.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_MT9V034.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_MT9V034.h :

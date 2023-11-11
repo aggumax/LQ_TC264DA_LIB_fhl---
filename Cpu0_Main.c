@@ -108,13 +108,14 @@ int core0_main (void)
     /*中断函数*/
 //    CCU6_InitConfig(CCU61, CCU6_Channel0,1000000);//1000ms
 //    ATOM_PWM_InitConfig(ATOMPWM2, 5000, 12500);
-    ATOM_PWM_InitConfig(ATOMSERVO1, 1950, 100);//舵机频率为100HZ，初始值为1.5ms中值
+//    ATOM_PWM_InitConfig(ATOMSERVO1, 1950, 100);//舵机频率为100HZ，初始值为1.5ms中值
 
 //	LQ_GPT_4mini512TFT();  //读取并显示编码器的值
 //	Text_P ID();
 //  LQ_Atom_Motor_8chPWM();
     // LQ_ATom_Servo_2chPWM();
 //	BD1202_test();
+	Test_CAMERA();
 
     while (1)	//主循环
     {

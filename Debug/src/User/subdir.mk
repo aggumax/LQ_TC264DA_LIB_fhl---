@@ -11,7 +11,8 @@ C_SRCS += \
 ../src/User/LQ_Inductor.c \
 ../src/User/LQ_MotorServo.c \
 ../src/User/LQ_PID.c \
-../src/User/Mycode.c 
+../src/User/Mycode.c \
+../src/User/image_8.c 
 
 COMPILED_SRCS += \
 ./src/User/BD_1202V2.src \
@@ -21,7 +22,8 @@ COMPILED_SRCS += \
 ./src/User/LQ_Inductor.src \
 ./src/User/LQ_MotorServo.src \
 ./src/User/LQ_PID.src \
-./src/User/Mycode.src 
+./src/User/Mycode.src \
+./src/User/image_8.src 
 
 C_DEPS += \
 ./src/User/BD_1202V2.d \
@@ -31,7 +33,8 @@ C_DEPS += \
 ./src/User/LQ_Inductor.d \
 ./src/User/LQ_MotorServo.d \
 ./src/User/LQ_PID.d \
-./src/User/Mycode.d 
+./src/User/Mycode.d \
+./src/User/image_8.d 
 
 OBJS += \
 ./src/User/BD_1202V2.o \
@@ -41,7 +44,8 @@ OBJS += \
 ./src/User/LQ_Inductor.o \
 ./src/User/LQ_MotorServo.o \
 ./src/User/LQ_PID.o \
-./src/User/Mycode.o 
+./src/User/Mycode.o \
+./src/User/image_8.o 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -64,7 +68,7 @@ src/User/%.o: ./src/User/%.src src/User/subdir.mk
 clean: clean-src-2f-User
 
 clean-src-2f-User:
-	-$(RM) ./src/User/BD_1202V2.d ./src/User/BD_1202V2.o ./src/User/BD_1202V2.src ./src/User/LQ_AnoScope.d ./src/User/LQ_AnoScope.o ./src/User/LQ_AnoScope.src ./src/User/LQ_Balance.d ./src/User/LQ_Balance.o ./src/User/LQ_Balance.src ./src/User/LQ_ImageProcess.d ./src/User/LQ_ImageProcess.o ./src/User/LQ_ImageProcess.src ./src/User/LQ_Inductor.d ./src/User/LQ_Inductor.o ./src/User/LQ_Inductor.src ./src/User/LQ_MotorServo.d ./src/User/LQ_MotorServo.o ./src/User/LQ_MotorServo.src ./src/User/LQ_PID.d ./src/User/LQ_PID.o ./src/User/LQ_PID.src ./src/User/Mycode.d ./src/User/Mycode.o ./src/User/Mycode.src
+	-$(RM) ./src/User/BD_1202V2.d ./src/User/BD_1202V2.o ./src/User/BD_1202V2.src ./src/User/LQ_AnoScope.d ./src/User/LQ_AnoScope.o ./src/User/LQ_AnoScope.src ./src/User/LQ_Balance.d ./src/User/LQ_Balance.o ./src/User/LQ_Balance.src ./src/User/LQ_ImageProcess.d ./src/User/LQ_ImageProcess.o ./src/User/LQ_ImageProcess.src ./src/User/LQ_Inductor.d ./src/User/LQ_Inductor.o ./src/User/LQ_Inductor.src ./src/User/LQ_MotorServo.d ./src/User/LQ_MotorServo.o ./src/User/LQ_MotorServo.src ./src/User/LQ_PID.d ./src/User/LQ_PID.o ./src/User/LQ_PID.src ./src/User/Mycode.d ./src/User/Mycode.o ./src/User/Mycode.src ./src/User/image_8.d ./src/User/image_8.o ./src/User/image_8.src
 
 .PHONY: clean-src-2f-User
 

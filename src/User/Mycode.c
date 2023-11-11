@@ -17,7 +17,7 @@
 
 /*****PID数值定义*****/
 /*串级PID的角速度环*/
-float  JSD_kp=0;//1875
+float  JSD_kp=1100;//1100
 float  JSD_ki=0;
 float  JSD_kd=0;
 /*串级PID的角度环*/
@@ -76,7 +76,7 @@ void Balance_FHL_Chuangji(void)
     if(KEY_Read(KEY1)==0)//按下KEY1键
         YB -=10;
     if(KEY_Read(KEY0)==0)//按下KEY0键
-        JSD_kp = YB;
+        JSD_ki = YB;
 
     if(fanxian_flag == 0)
     {
