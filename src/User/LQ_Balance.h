@@ -41,8 +41,8 @@ float X_balance_Control(float Angle,float Angle_Zero,float Gyro);
 速度PI控制,速度正反馈环
 **************************************************************************/
 float Velocity_Control(int encoder);
-
 int SBB_Get_BalancePID(float Angle,float Gyro);
 int SBB_Get_MotorPI (int Encoder,int Target);
 int Velocity_Momentum(int Target,int encoder);
+
 #endif /* SRC_APPSW_TRICORE_MAIN_LQ_SMARTCAR_H_ */

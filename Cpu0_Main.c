@@ -78,6 +78,7 @@ int core0_main (void)
     TFTSPI_CLS(u16BLACK);
 //    TFTSPI_Show_Logo(0,37);       /
     TFTSPI_P8X16Str(3,4,"FengHuoLun",u16WHITE,u16BLACK);
+    delayms(20);
     // 按键初始化
 	GPIO_KEY_Init();
 	// LED灯所用P10.6和P10.5初始化
@@ -106,34 +107,41 @@ int core0_main (void)
 	// 切记CPU0,CPU1...不可以同时开启屏幕显示，否则冲突不显示ʾ
 	mutexCpu0TFTIsOk=0;         // CPU1： 0占用/1释放 TFT
     /*中断函数*/
-//    CCU6_InitConfig(CCU61, CCU6_Channel0,1000000);//1000ms
+//    CCU6_InitConfig(CCU61, CCU6_Channel0,5000);//5ms
 //    ATOM_PWM_InitConfig(ATOMPWM2, 5000, 12500);
 //    ATOM_PWM_InitConfig(ATOMSERVO1, 1950, 100);//舵机频率为100HZ，初始值为1.5ms中值
+
 
 //	LQ_GPT_4mini512TFT();  //读取并显示编码器的值
 //	Text_P ID();
 //  LQ_Atom_Motor_8chPWM();
     // LQ_ATom_Servo_2chPWM();
 //	BD1202_test();
-	Test_CAMERA();
+//	Test_CAMERA();
 
     while (1)	//主循环
     {
         TFTSPI_P8X16Str(3, 0, "GUMAX_FHL", u16BLACK, u16YELLOW);
 
         LQ_DMP_Read();
+//        Balance();
         Balance_FHL_Chuangji();
 //        sprintf((char*)txt,"Yaw:%.02f",Yaw);//偏航角
 //        TFTSPI_P8X16Str(0,2,txt,u16BLACK,u16WHITE);//
 //        sprintf((char*)txt,"Roll:%.02f",Roll);//俯仰角
 //        TFTSPI_P8X16Str(0,3,txt,u16BLACK,u16WHITE);
         sprintf((char*)txt,"Pitch:%.02f",Pitch);//倾斜角
-        TFTSPI_P8X16Str(0,1,txt,u16WHITE,u16BLACK);
+        TFTSPI_P8X16Str(0,2,txt,u16WHITE,u16BLACK);
         float GG =gyro[0];
         sprintf((char*)txt,"gyro:%.02f",GG);//
-        TFTSPI_P8X16Str(0,2,txt,u16WHITE,u16BLACK);
+        TFTSPI_P8X16Str(0,3,txt,u16WHITE,u16BLACK);
 //        printf("%.2f,%.2f,%.2f\n", Roll,Pitch,Yaw);
+        if(Pitch>0.5){
+                    TFTSPI_P8X16Str(5,7,"<-",u16WHITE,u16BLACK);
+        }else {
+            TFTSPI_P8X16Str(5,7,"->",u16WHITE,u16BLACK);
 
+        }
 
         TFTSPI_P8X16Str(12,9,"@FHL",u16WHITE,u16BLACK);
     }

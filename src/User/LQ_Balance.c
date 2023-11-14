@@ -57,33 +57,45 @@ extern sint16 OFFSET2;      //最近，第三格
 extern sint16 TXV;          //梯形的左高度，右高度
 short  Velocity = 20;                 // 速度，定时周期内为60个脉冲，龙邱带方向512编码器
 
+//void Motor_HHH(sint32 motor)
+//{
+//    if(motor > 0)
+//    {
+//        ATOM_PWM_SetDuty(MOTOR1_P, motor, MOTOR_FREQUENCY);
+//    }
+//    else {
+//        ATOM_PWM_SetDuty(MOTOR1_N, motor, MOTOR_FREQUENCY);
+//    }
+//
+//}
+
 void Balance(void)
 {
-    int  Servo_PWM;                             // 舵机PID
+//    int  Servo_PWM;                             // 舵机PID
     /* 获取编码器值 */
     ECPULSE2 = ENC_GetCounter(ENC4_InPut_P02_8); // 后轮反馈     母板编码器2
     LQ_DMP_Read();//pitch 左负右正
-    Seek_Road();  // 获取赛道颜色偏差
-    TempAngle = OFFSET2+OFFSET2+OFFSET1;    // 计算赛道颜色偏差值
-    Zero_error =(Pitch_Zero-(float)TempAngle/1200);  // 计算倾斜角度偏差值
+//    Seek_Road();  // 获取赛道颜色偏差
+//    TempAngle = OFFSET2+OFFSET2+OFFSET1;    // 计算赛道颜色偏差值
+//    Zero_error =(Pitch_Zero-(float)TempAngle/1200);  // 计算倾斜角度偏差值
     /////// 动量轮控制//////////
-    PWM_X = -X_balance_Control(Pitch,Zero_error,gyro[0]);// 动量轮电机控制左右倾角
-    PWM_accel =  Velocity_Control(-ECPULSE1);          // 动量轮电机速度环正反馈
+    PWM_X = X_balance_Control(Pitch,Pitch_Zero,gyro[0]);// 动量轮电机控制左右倾角
+    PWM_accel = - Velocity_Control(-ECPULSE1);          // 动量轮电机速度环正反馈
     if(PWM_X>8000)PWM_X = 8000;
     else if(PWM_X<-8000)PWM_X = -8000;
     if(PWM_accel>8000) PWM_accel=8000;
     else if(PWM_accel<-8000) PWM_accel=-8000;
-    MotorDutyA = PWM_X+PWM_accel;//BLDCduty= Velocity_Momentum(distence,ECPULSE1);
+    MotorDutyA = -(PWM_X-PWM_accel);//BLDCduty= Velocity_Momentum(distence,ECPULSE1);
 
     if(MotorDutyA>8000) MotorDutyA=8000;        // 动量轮电机限幅
     else if(MotorDutyA<-8000) MotorDutyA=-8000; // 动量轮电机限幅
     else if(MotorDutyA<0) MotorDutyA -=2000;    // 死区
     else if(MotorDutyA>0) MotorDutyA+=2000;      // 死区
     ///////// 舵机电机控制///////
-    if( Servo_PWM < - Servo_Delta)    Servo_PWM = - Servo_Delta;  // 舵机角度限制
-    else if(Servo_PWM > Servo_Delta)  Servo_PWM =   Servo_Delta;  // 舵机角度限制
-    PWMServo = Servo_Center_Mid - TempAngle /13;                      // 转换为舵机控制PWM
-    MotorDutyB = SBB_Get_MotorPI(ECPULSE2, Velocity)/5;           // 电机增量式PI控制
+//    if( Servo_PWM < - Servo_Delta)    Servo_PWM = - Servo_Delta;  // 舵机角度限制
+//    else if(Servo_PWM > Servo_Delta)  Servo_PWM =   Servo_Delta;  // 舵机角度限制
+//    PWMServo = Servo_Center_Mid - TempAngle /13;                      // 转换为舵机控制PWM
+//    MotorDutyB = SBB_Get_MotorPI(ECPULSE2, Velocity)/5;           // 电机增量式PI控制
     if((Pitch > 23) || (Pitch < -23))       // 摔倒停车判断
        Flag_Stop = 1;
     if(Flag_Stop == 1)                       // 停车
@@ -92,8 +104,9 @@ void Balance(void)
         MotorDutyB = 0;                      // 电机关闭
         Integration = 0;                     // 积分参数归零
     }
-    ServoCtrl(PWMServo);                    // 舵机控制
-    MotorCtrl1(MotorDutyB);                // 后轮电机控制
+//    ServoCtrl(PWMServo);                    // 舵机控制
+    MotorCtrl(MotorDutyA,0);                // 后轮电机控制
+//    Motor_HHH(MotorDutyA);
 }
 
 
