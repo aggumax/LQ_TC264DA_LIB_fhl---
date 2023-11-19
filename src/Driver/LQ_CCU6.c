@@ -33,7 +33,9 @@
 #include "LQ_GPT12_ENC.h"
 #include "LQ_Balance.h"
 #include "Mycode.h"
+#include "Balance2.h"
 #include "LQ_Atom_Motor.h"
+#include "LQ_MPU6050_DMP.h"
 volatile sint16 ECPULSE1 = 0;          // 速度全局变量
 volatile sint16 ECPULSE2 = 0;          // 速度全局变量
 volatile sint32 RAllPulse = 0;          // 速度全局变量
@@ -141,7 +143,9 @@ void CCU61_CH0_IRQHandler (void)
 //    RAllPulse += ECPULSE2;                       //
 //    LQ_Atom_Motor_8chPWM
 //    Balance();
-    Balance_FHL_Chuangji();
+//    Balance_FHL_Chuangji();
+    LQ_DMP_Read();
+
     LED_Ctrl(LED0, RVS);
 }
 /*************************************************************************

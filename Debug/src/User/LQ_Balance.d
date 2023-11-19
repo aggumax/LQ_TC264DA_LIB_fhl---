@@ -348,3 +348,5 @@ src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序
 f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_CAMERA.h :
 src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_MT9V034.h
 f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_MT9V034.h :
+src/User/LQ_Balance.o :	../src/User/Mycode.h
+../src/User/Mycode.h :

@@ -128,7 +128,7 @@ void Test_CAMERA (void)
 #else       //显示二值化图像
 
             /* 二值化 */
-            Get_Bin_Image(1);
+            Get_Bin_Image(0);
 
             // 显示摄像头图像
             TFTSPI_BinRoad(0, 0, LCDH, LCDW, (unsigned char *) Bin_Image);

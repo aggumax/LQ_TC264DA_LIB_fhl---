@@ -98,8 +98,8 @@ void LQ_Atom_Motor_8chPWM(void)
 //	TFTSPI_P8X16Str(0, 3, "Test Motor",u16WHITE,u16BLACK);		//字符串显示
 //	GPIO_KEY_Init();
 
-//	ATOM_PWM_InitConfig(ATOMPWM0, 5000, 12500);
-//	ATOM_PWM_InitConfig(ATOMPWM1, 5000, 12500);
+	ATOM_PWM_InitConfig(ATOMPWM0, 5000, 12500);
+	ATOM_PWM_InitConfig(ATOMPWM1, 5000, 12500);
 	ATOM_PWM_InitConfig(ATOMPWM2, 5300, 12500);
 //	ATOM_PWM_InitConfig(ATOMPWM3, 5000, 12500);
 //	ATOM_PWM_InitConfig(ATOMPWM4, 1000, 12500);
@@ -107,27 +107,27 @@ void LQ_Atom_Motor_8chPWM(void)
 //	ATOM_PWM_InitConfig(ATOMPWM6, 1000, 12500);
 //	ATOM_PWM_InitConfig(ATOMPWM7, 1000, 12500);
 
-//	while(1)
-//	{
-//		if(KEY_Read(KEY0)==0)//按下KEY0键，占空比减小
-//		{
-//			if(duty>500)
-//				duty-=100;
-//		}
-//		if(KEY_Read(KEY2)==0)//按下KEY2键，占空比加大
-//		{
-//			if(duty<ATOM_PWM_MAX)//满占空比为10000
-//				duty+=100;
-//		}
-//		if(KEY_Read(KEY1)==0)//按下KEY1键，占空比中值
-//		{
-//			duty=5000;
-//		}
-	if(Down_flag() == 1)
-	    duty = 0;
+	while(1)
+	{
+		if(KEY_Read(KEY0)==0)//按下KEY0键，占空比减小
+		{
+			if(duty>500)
+				duty-=100;
+		}
+		if(KEY_Read(KEY2)==0)//按下KEY2键，占空比加大
+		{
+			if(duty<ATOM_PWM_MAX)//满占空比为10000
+				duty+=100;
+		}
+		if(KEY_Read(KEY1)==0)//按下KEY1键，占空比中值
+		{
+			duty=5000;
+		}
+//	if(Down_flag() == 1)
+//	    duty = 0;
 
-//		ATOM_PWM_SetDuty(ATOMPWM0, duty, 12500);//驱动四个电机
-//		ATOM_PWM_SetDuty(ATOMPWM1, 5000, 12500);
+		ATOM_PWM_SetDuty(ATOMPWM0, duty, 12500);//驱动四个电机
+		ATOM_PWM_SetDuty(ATOMPWM1, 5000, 12500);
 		ATOM_PWM_SetDuty(ATOMPWM2, duty, 12500);
 //		ATOM_PWM_SetDuty(ATOMPWM3, 5000, 12500);
 //		ATOM_PWM_SetDuty(ATOMPWM4, duty, 12500);
@@ -141,7 +141,7 @@ void LQ_Atom_Motor_8chPWM(void)
 
     	LED_Ctrl(LED0,RVS);        //电平翻转,LED闪烁
 //		delayms(200);              //延时等待
-//	}
+	}
 }
 /*************************************************************************
 *  函数名称：void LQ_ATom_Servo_2chPWM(void)

@@ -42,8 +42,11 @@
 #include "LQ_CAMERA.h"
 #include "BD_1202V2.h"
 #include "LQ_GTM.h"
+#include "LQ_GPT12_ENC.h"
 
 #include "Mycode.h"
+#include "Balance2.h"
+#include "image_8.h"
 
 App_Cpu0 g_AppCpu0;                       // brief CPU 0 global data
 IfxCpu_mutexLock mutexCpu0InitIsOk = 1;   // CPU0 初始化完成标志位
@@ -51,6 +54,7 @@ volatile char mutexCpu0TFTIsOk=0;         // CPU1 0占用/1释放 TFT
 int Vat=0;
 int Vbat=0;
 extern sint16 TempAngle;
+int kaishi=0;
 /*************************************************************************
 *  功能说明：CPU0主函数
 *  修改时间：2023年11月4日
@@ -111,41 +115,37 @@ int core0_main (void)
 //    ATOM_PWM_InitConfig(ATOMPWM2, 5000, 12500);
 //    ATOM_PWM_InitConfig(ATOMSERVO1, 1950, 100);//舵机频率为100HZ，初始值为1.5ms中值
 
-
-//	LQ_GPT_4mini512TFT();  //读取并显示编码器的值
-//	Text_P ID();
+//	Text_PID();
 //  LQ_Atom_Motor_8chPWM();
     // LQ_ATom_Servo_2chPWM();
-//	BD1202_test();
-//	Test_CAMERA();
+	Test_CAMERA();
 
     while (1)	//主循环
     {
-        TFTSPI_P8X16Str(3, 0, "GUMAX_FHL", u16BLACK, u16YELLOW);
-
+//        TFTSPI_P8X16Str(3, 0, "GUMAX_FHL", u16BLACK, u16YELLOW);
         LQ_DMP_Read();
+//        PINGHENG_BJ(Pitch);
 //        Balance();
-        Balance_FHL_Chuangji();
+//        if(KEY_Read(KEY0)==0) kaishi=1;
+//        if(KEY_Read(KEY1)==0) kaishi=0;
+//        if(kaishi)Balance_FHL_Chuangji();
+//        FHL_servo();
 //        sprintf((char*)txt,"Yaw:%.02f",Yaw);//偏航角
-//        TFTSPI_P8X16Str(0,2,txt,u16BLACK,u16WHITE);//
-//        sprintf((char*)txt,"Roll:%.02f",Roll);//俯仰角
-//        TFTSPI_P8X16Str(0,3,txt,u16BLACK,u16WHITE);
-        sprintf((char*)txt,"Pitch:%.02f",Pitch);//倾斜角
-        TFTSPI_P8X16Str(0,2,txt,u16WHITE,u16BLACK);
-        float GG =gyro[0];
-        sprintf((char*)txt,"gyro:%.02f",GG);//
-        TFTSPI_P8X16Str(0,3,txt,u16WHITE,u16BLACK);
-//        printf("%.2f,%.2f,%.2f\n", Roll,Pitch,Yaw);
-        if(Pitch>0.5){
-                    TFTSPI_P8X16Str(5,7,"<-",u16WHITE,u16BLACK);
-        }else {
-            TFTSPI_P8X16Str(5,7,"->",u16WHITE,u16BLACK);
+//        TFTSPI_P8X16Str(0,1,txt,u16BLACK,u16WHITE);//
+//        sprintf((char*)txt,"MotorDuty111:%.02f",MotorDuty111);//俯仰角
+//        TFTSPI_P8X16Str(0,5,txt,u16BLACK,u16WHITE);
+//        sprintf((char*)txt,"Pitch:%.02f",Pitch);//倾斜角
+//        TFTSPI_P8X16Str(0,1,txt,u16WHITE,u16BLACK);
+//        sprintf((char*)txt,"enc:%05d",enc_222);//倾斜角
+//        TFTSPI_P8X16Str(0,3,txt,u16WHITE,u16BLACK);
+//        float GG =gyro[0];
+//        sprintf((char*)txt,"gyro:%.02f",GG);//
+//        TFTSPI_P8X16Str(0,2,txt,u16WHITE,u16BLACK);
 
-        }
 
-        TFTSPI_P8X16Str(12,9,"@FHL",u16WHITE,u16BLACK);
+//        TFTSPI_P8X16Str(12,9,"@FHL",u16WHITE,u16BLACK);
+//        image_process();
     }
 }
-
 
 

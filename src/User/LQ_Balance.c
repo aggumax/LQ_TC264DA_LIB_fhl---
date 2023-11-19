@@ -16,6 +16,8 @@
 #include "../Driver/LQ_GTM.h"
 #include "../User/LQ_PID.h"
 #include "LQ_CAMERA.h"
+
+#include "Mycode.h"
 uint8  Start_Flag=0;                    //启动标志
 //直流电机
 //float X_Balance_KP=1900.001,X_Balance_KI=3.2001,X_Balance_KD=60.001;  // 平衡环PID  Pitch轴角度环PID参数 动量轮
@@ -105,8 +107,10 @@ void Balance(void)
         Integration = 0;                     // 积分参数归零
     }
 //    ServoCtrl(PWMServo);                    // 舵机控制
-    MotorCtrl(MotorDutyA,0);                // 后轮电机控制
+//    MotorCtrl(MotorDutyA,0);                // 后轮电机控制
 //    Motor_HHH(MotorDutyA);
+    Motor_konzhi(MotorDutyA);
+
 }
 
 

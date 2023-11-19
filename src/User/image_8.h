@@ -10,6 +10,11 @@ typedef   signed           int int32;
 #define image_h 120//图像高度
 #define image_w 188//图像宽度
 
+#define uesr_RED     0XF800    //红色
+#define uesr_GREEN   0X07E0    //绿色
+#define uesr_BLUE    0X001F    //蓝色
+
+
 #define white_pixel 255
 #define black_pixel 0
 #define bin_jump_num    1//跳过的点数
