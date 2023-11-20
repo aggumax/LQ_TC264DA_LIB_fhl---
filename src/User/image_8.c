@@ -561,4 +561,30 @@ TFTSPI_BinRoad(0,0,LCDH,LCDW,(unsigned char *) bin_image);
 }
 
 
+/*****************************下面是普通寻中线的函数******************************/
+char Zhongjian[120]={79};//中线位置
+char Zuo[120]={0};//左边线
+char You[120]={159};//右边线
+//像素是120*160
+void Midder_xian(void)
+{
+    int i;
+    for (i = 79; i >=1; i--)//从中间向左找上升沿
+    {
+        if (Bin_Image[119][i-1] - Bin_Image[119][i] == 1)
+        {
+            Zuo[119] = i;
+        }
+        
+    }
+    for (i = 79; i <=158; i++)//从中间向右找上升沿
+    {
+        if (Bin_Image[119][i+1] - Bin_Image[119][i] == 1)
+        {
+            You[119] = i;
+        }
+        
+    }
+}
+
 
