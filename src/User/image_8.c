@@ -124,8 +124,56 @@ void turn_to_bin(void)
 {
     uint8 i,j;
     image_thereshold = otsuThreshold(original_image[0], image_w, image_h);
-//    if()
+    for(i = 0; i<image_h;i++)
+    {
+        for(j = 0; j<image_w; j++)
+        {
+               if(original_image[i][j] > image_thereshold)bin_image[i][j] = white_pixel;
+                else bin_image[i][j] = black_pixel;
+        }
+    }
+
 }
+
+/**********寻找两个边界点作为八领域循环的起始点***********/
+uint8 start_point_l[2] = {0};//左边起点的x,y值
+uint8 start_point_r[2] = {0};//右边起点的x,y值
+uint8 get_startpoint(uint8 start_row)
+{
+    uint8 i=0, l_found=0, r_found=0;
+    //先清零
+    start_point_l[0] = 0;//x
+    start_point_l[1] = 0;//y
+
+    start_point_r[0] = 0;//x
+    start_point_r[1] = 0;//y
+
+    for(i = image_w /2; i > borde_min; i--)
+    {
+        start_point_l[0] = i;//x
+        start_point_l[1] = start_row;//y
+        if(bin_image[start_row][i] == 255 && bin_image[start_row][i-1] == 0)
+        {
+            l_found = 1;//找到左边起点
+            break;
+        }
+    }
+    for(i = image_w / 2; i < borde_max; i++)
+    {
+        start_point_r[0] = i;//x
+        start_point_r[1] = start_row;//y
+        if(bin_image[start_row][i] == 255 && bin_image[start_row][i+1] == 0)
+        {
+            r_found = 1;//找到右边起点
+            break;
+        }
+    }
+    
+    if(l_found && r_found) return 1;
+    else return 0;
+}
+
+
 
 
 

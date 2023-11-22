@@ -14,5 +14,11 @@ typedef   signed           int int32;
 #define image_h   120//Í¼Ïñ¸ß¶È
 #define image_w   188//Í¼Ïñ¿í¶È
 
+#define white_pixel   255
+#define black_pixel   0
+
+#define borde_max     image_w-2
+#define borde_min     1
+#define bin_jump_num  1
 
 #endif
