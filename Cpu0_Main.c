@@ -119,7 +119,7 @@ int core0_main (void)
 //  LQ_Atom_Motor_8chPWM();
     // LQ_ATom_Servo_2chPWM();
 	Test_CAMERA();
-
+//	CAMERA_Init(50);
     while (1)	//主循环
     {
 //        TFTSPI_P8X16Str(3, 0, "GUMAX_FHL", u16BLACK, u16YELLOW);

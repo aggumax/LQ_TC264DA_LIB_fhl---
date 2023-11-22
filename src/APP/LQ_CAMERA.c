@@ -95,7 +95,7 @@ void Test_CAMERA (void)
 #endif
 
     /* …„œÒÕ∑≥ı ºªØ */
-    CAMERA_Init(50);
+    CAMERA_Init(100);
 
     while (1)
     {
