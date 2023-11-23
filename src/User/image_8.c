@@ -173,7 +173,41 @@ uint8 get_startpoint(uint8 start_row)
     else return 0;
 }
 
+#define USE_num  image_h*3
 
+//存放点点x,y坐标
+uint16 points_l[(uint16)USE_num][2] = {{0}};//左线
+uint16 points_r[(uint16)USE_num][2] = {{0}};//右线
+uint16 dir_r[(uint16)USE_num][2] = {0};//用于储存右边的生长方向
+uint16 dir_l[(uint16)USE_num][2] = {0};//用于储存左边的生长方向
+uint16 data_stastics_l = 0;
+uint16 data_stastics_r = 0;
+uint8 hightest = 0;
 
+void search_l_r(uint16 break_flag, uint8(*image)[image_w], uint16 *l_stastic, uint16 *r_stastic, uint8 l_start_x, uint8 l_start_y, uint8 r_start_x, uint8 r_start_y, uint8 *hightest)
+{
+    uint8 i=0, j=0;
+
+    //左边变量
+    uint8 search_filds_l[8][2] = {{0}};
+    uint8 index_l = 0;
+    uint8 temp_l[8][2] = {{0}};
+    uint8 center_point_l[2] = {0};
+    uint16 l_data_stastics;//统计左边
+    //定义八个领域
+    static sint8 seeds_l[8][2] = {{0,1},{-1,1},{-1,0},{-1,-1},{0,-1},{1,-1},{1,0},{1,1},};//这个是顺时针
+
+    //右边变量
+    uint8 search_filds_r[8][2] = {{0}};
+    uint8 index_r = 0;
+    uint8 temp_r[8][2] = {{0}};
+    uint8 center_point_r[2] = {0};
+    uint16 r_data_stastics;//统计右边
+    //定义八个领域
+    static sint8 seeds_r[8][2] = {{0,1},{-1,1},{-1,0},{-1,-1},{0,-1},{1,-1},{1,0},{1,1},};//这个是逆时针
+
+    l_data_stastics = *l_stastic;
+    r_data_stastics = *r_stastic;
+}
 
 
