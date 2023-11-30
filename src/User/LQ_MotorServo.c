@@ -55,14 +55,18 @@ uint16 BatVolt = 0;           // 电池电压采集
 void MotorInit (void)
 {
     ATOM_PWM_InitConfig(MOTOR1_P, 0, MOTOR_FREQUENCY);
+    ATOM_PWM_InitConfig(MOTOR1_N, 0, MOTOR_FREQUENCY);
     ATOM_PWM_InitConfig(MOTOR2_P, 0, MOTOR_FREQUENCY);
+    ATOM_PWM_InitConfig(MOTOR2_N, 0, MOTOR_FREQUENCY);
     ATOM_PWM_InitConfig(MOTOR3_P, 0, MOTOR_FREQUENCY);
+    ATOM_PWM_InitConfig(MOTOR3_N, 0, MOTOR_FREQUENCY);
     ATOM_PWM_InitConfig(MOTOR4_P, 0, MOTOR_FREQUENCY);
-
-    PIN_InitConfig(P32_4, PIN_MODE_OUTPUT, 0);
-    PIN_InitConfig(P22_3, PIN_MODE_OUTPUT, 0);
-    PIN_InitConfig(P21_5, PIN_MODE_OUTPUT, 0);
-    PIN_InitConfig(P21_3, PIN_MODE_OUTPUT, 0);
+    ATOM_PWM_InitConfig(MOTOR4_N, 0, MOTOR_FREQUENCY);
+//    PIN_InitConfig(P32_4, PIN_MODE_OUTPUT, 0);
+//    PIN_InitConfig(P22_3, PIN_MODE_OUTPUT, 0);
+//    PIN_InitConfig(P21_5, PIN_MODE_OUTPUT, 0);
+//    PIN_InitConfig(P21_3, PIN_MODE_OUTPUT, 0);
+//    PIN_InitConfig(P21_3, PIN_MODE_OUTPUT, 0);
 }
 
 /*************************************************************************
@@ -179,12 +183,15 @@ void MotorCtrl (sint32 motor1, sint32 motor2)
     if (motor1 > 0)
        {
            ATOM_PWM_SetDuty(MOTOR1_P, motor1, MOTOR_FREQUENCY);
-           IfxPort_setPinLow(&MODULE_P23, 1);
+//           IfxPort_setPinLow(&MODULE_P23, 1);
+           ATOM_PWM_SetDuty(MOTOR1_N, 0,  MOTOR_FREQUENCY);
        }
        else
+//    if (motor1 < 0)
        {
+           ATOM_PWM_SetDuty(MOTOR1_P, 0, MOTOR_FREQUENCY);
            ATOM_PWM_SetDuty(MOTOR1_N, (0-motor1),  MOTOR_FREQUENCY);
-           IfxPort_setPinHigh(&MODULE_P23, 1);
+//           IfxPort_setPinHigh(&MODULE_P23, 1);
        }
 
        if (motor2 > 0)

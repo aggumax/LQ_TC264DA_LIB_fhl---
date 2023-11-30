@@ -55,6 +55,7 @@
 #include "../Driver/LQ_UART.h"
 #include "LQ_GPIO_LED.h"
 #include "LQ_TFT18.h"
+#include "image_8.h"
 
 /** 图像原始数据存放 */
 unsigned char Image_Data[IMAGEH][IMAGEW];
@@ -90,7 +91,7 @@ void Test_CAMERA (void)
     OLED_Init();
     OLED_CLS();                   //LCD清屏
 #else
-    TFTSPI_Init(0);               //TFT1.8初始化0:横屏  1：竖屏
+    TFTSPI_Init(1);               //TFT1.8初始化0:横屏  1：竖屏
     TFTSPI_CLS(u16BLUE);          //清屏
 #endif
 
@@ -105,11 +106,18 @@ void Test_CAMERA (void)
             //上报数据给上位机 串口速度比较慢 注意上位机图像宽高设置为120*188
           //  CAMERA_Reprot();
 
+
+                                     // TingChe();
+                                    Get_Use_Image();
+                                    image_process(Image_Use);
+                                    Camera_Flag = 0;
+
+
             /* 提取部分使用的数据 */
-            Get_Use_Image();
+
 
             /* 清除摄像头采集完成标志位  如果不清除，则不会再次采集数据 */
-            Camera_Flag = 0;
+
 
 #ifdef USEOLED
 
@@ -128,10 +136,11 @@ void Test_CAMERA (void)
 #else       //显示二值化图像
 
             /* 二值化 */
-            Get_Bin_Image(0);
+//            Get_Bin_Image(0);
 
             // 显示摄像头图像
-            TFTSPI_BinRoad(0, 0, LCDH, LCDW, (unsigned char *) Bin_Image);
+//            TFTSPI_BinRoad(0, 0, LCDH, LCDW, (unsigned char *) Bin_Image);
+//            image_process();
 #endif
 #endif
             LED_Ctrl(LED0, RVS);
@@ -674,3 +683,5 @@ void Seek_Road (void)
     OFFSET2 = temp;
     return;
 }
+
+

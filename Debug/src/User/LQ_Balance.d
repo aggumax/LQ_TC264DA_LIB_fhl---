@@ -348,5 +348,115 @@ src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序
 f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_CAMERA.h :
 src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_MT9V034.h
 f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_MT9V034.h :
+src/User/LQ_Balance.o :	../src/User/image_8.h
+../src/User/image_8.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Scu/Std/IfxScuWdt.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Scu/Std/IfxScuWdt.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Stm/Std/IfxStm.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Stm/Std/IfxStm.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_ADC_test.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_ADC_test.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_Atom_Motor.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_Atom_Motor.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_EEPROM_TEST.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_EEPROM_TEST.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_FFT_TEST.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_FFT_TEST.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_GPIO_ExInt.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_GPIO_ExInt.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_GPIO_KEY.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_GPIO_KEY.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_GPIO_LED.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_GPIO_LED.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_GPT_mini512.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_GPT_mini512.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_I2C_9AX.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_I2C_9AX.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_I2C_VL53.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_I2C_VL53.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_ICM20602.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_ICM20602.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_OLED096.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_OLED096.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_STM_Timer.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_STM_Timer.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_TFT18.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_TFT18.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_Tim_InputCature.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_Tim_InputCature.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_Tom_Servo.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_Tom_Servo.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_UART_Bluetooth.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_UART_Bluetooth.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/Driver/include.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/Driver/include.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/Driver/LQ_STM.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/Driver/LQ_STM.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/Driver/LQ_UART.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/Driver/LQ_UART.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/_Lib/DataHandling/Ifx_Fifo.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/_Lib/DataHandling/Ifx_Fifo.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Asclin/Std/IfxAsclin.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Asclin/Std/IfxAsclin.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/_Impl/IfxAsclin_cfg.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/_Impl/IfxAsclin_cfg.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Cpu/Std/Ifx_Types.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Cpu/Std/Ifx_Types.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/Infra/Sfr/TC26B/_Reg/IfxAsclin_reg.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/Infra/Sfr/TC26B/_Reg/IfxAsclin_reg.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/Infra/Sfr/TC26B/_Reg/IfxAsclin_regdef.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/Infra/Sfr/TC26B/_Reg/IfxAsclin_regdef.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Scu/Std/IfxScuWdt.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Scu/Std/IfxScuWdt.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/_PinMap/IfxAsclin_PinMap.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/_PinMap/IfxAsclin_PinMap.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/_Impl/IfxAsclin_cfg.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/_Impl/IfxAsclin_cfg.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Port/Std/IfxPort.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Port/Std/IfxPort.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Asclin/Asc/IfxAsclin_Asc.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Asclin/Asc/IfxAsclin_Asc.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Asclin/Std/IfxAsclin.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Asclin/Std/IfxAsclin.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/_Lib/DataHandling/Ifx_Fifo.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/_Lib/DataHandling/Ifx_Fifo.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Stm/Std/IfxStm.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Stm/Std/IfxStm.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/Service/CpuGeneric/StdIf/IfxStdIf_DPipe.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/Service/CpuGeneric/StdIf/IfxStdIf_DPipe.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/Service/CpuGeneric/StdIf/IfxStdIf.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/Service/CpuGeneric/StdIf/IfxStdIf.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Cpu/Std/Ifx_Types.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Cpu/Std/Ifx_Types.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/_PinMap/IfxAsclin_PinMap.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/_PinMap/IfxAsclin_PinMap.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Cpu/Irq/IfxCpu_Irq.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/Cpu/Irq/IfxCpu_Irq.h :
+src/User/LQ_Balance.o :	../src/User/LQ_MotorServo.h
+../src/User/LQ_MotorServo.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_IIC_Gyro.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_IIC_Gyro.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_TFT2.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_TFT2.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_BLDC.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_BLDC.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/Driver/LQ_CCU6.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/Driver/LQ_CCU6.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/Driver/LQ_ADC.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/Driver/LQ_ADC.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/_PinMap/IfxGtm_PinMap.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/Libraries/iLLD/TC26B/Tricore/_PinMap/IfxGtm_PinMap.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_MPU6050_DMP.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/APP/LQ_MPU6050_DMP.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/Driver/LQ_SOFTI2C.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/Driver/LQ_SOFTI2C.h :
+src/User/LQ_Balance.o :	../src/User/BD_1202V2.h
+../src/User/BD_1202V2.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/Driver/LQ_GTM.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/Driver/LQ_GTM.h :
+src/User/LQ_Balance.o :	f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/Driver/LQ_GPT12_ENC.h
+f:/TC264/十七届平衡单车演示程序/LQ_TC264无刷电机演示程序/LQ_TC264DA_LIB_fhl\ -\ 副本/src/Driver/LQ_GPT12_ENC.h :
 src/User/LQ_Balance.o :	../src/User/Mycode.h
 ../src/User/Mycode.h :
+src/User/LQ_Balance.o :	../src/User/Balance2.h
+../src/User/Balance2.h :

@@ -86,7 +86,7 @@ void LQ_Atom_8chPWM(void)
 *************************************************************************/
 void LQ_Atom_Motor_8chPWM(void)
 {
-	unsigned short duty=5300;
+	unsigned short duty=5000;
 //	char txt[16];
 	float encValue_D=0;
     ENC_InitConfig(ENC4_InPut_P02_8, ENC4_Dir_P33_5);
@@ -127,8 +127,8 @@ void LQ_Atom_Motor_8chPWM(void)
 //	    duty = 0;
 
 		ATOM_PWM_SetDuty(ATOMPWM0, duty, 12500);//驱动四个电机
-		ATOM_PWM_SetDuty(ATOMPWM1, 5000, 12500);
-		ATOM_PWM_SetDuty(ATOMPWM2, duty, 12500);
+//		ATOM_PWM_SetDuty(ATOMPWM1, 5000, 12500);
+//		ATOM_PWM_SetDuty(ATOMPWM2, duty, 12500);
 //		ATOM_PWM_SetDuty(ATOMPWM3, 5000, 12500);
 //		ATOM_PWM_SetDuty(ATOMPWM4, duty, 12500);
 //		ATOM_PWM_SetDuty(ATOMPWM5, duty, 12500);

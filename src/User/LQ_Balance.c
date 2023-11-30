@@ -16,6 +16,7 @@
 #include "../Driver/LQ_GTM.h"
 #include "../User/LQ_PID.h"
 #include "LQ_CAMERA.h"
+#include "image_8.h"
 
 #include "Mycode.h"
 uint8  Start_Flag=0;                    //启动标志
@@ -29,8 +30,8 @@ uint8  Start_Flag=0;                    //启动标志
 //float X_Velocity_KP=30,X_Velocity_KI=30;//动量轮电机速度环PI参数
 
 // 行进
-float X_Balance_KP=3750, X_Balance_KI=0, X_Balance_KD=65;   // 平衡环PID  Pitch轴角度环PID参数 动量轮
-float X_Velocity_KP=20,X_Velocity_KI=110;//动量轮电机速度环PI参数
+float X_Balance_KP=1900, X_Balance_KI=4.8001, X_Balance_KD=15;   // 平衡环PID  Pitch轴角度环PID参数 动量轮1350 16.7 10  悬停
+float X_Velocity_KP=0.1,X_Velocity_KI=15;//动量轮电机速度环PI参数
 
 
 #define Motor_Kp     13              // 后轮电机PID参数
@@ -40,7 +41,7 @@ float X_Velocity_KP=20,X_Velocity_KI=110;//动量轮电机速度环PI参数
 #define Balance_Kd   0.03            // 舵机PID参数    0.03
 #define Balance_Ki   0.002          // 舵机PID参数 0.002
 
-float Pitch_Zero=5.5,Pitch_error=0.00;//设置Pitch轴角度零点 5.8
+float Pitch_Zero=3.0,Pitch_error=0.00;//设置Pitch轴角度零点 5.8
 float Zero_error = 0.00;              // Pitch偏差值
 int PWM_X,PWM_accel;                  // PWM中间量
 short  PWMMotor, PWMServo;            // 电机舵机PMW变量中值
@@ -59,23 +60,13 @@ extern sint16 OFFSET2;      //最近，第三格
 extern sint16 TXV;          //梯形的左高度，右高度
 short  Velocity = 20;                 // 速度，定时周期内为60个脉冲，龙邱带方向512编码器
 
-//void Motor_HHH(sint32 motor)
-//{
-//    if(motor > 0)
-//    {
-//        ATOM_PWM_SetDuty(MOTOR1_P, motor, MOTOR_FREQUENCY);
-//    }
-//    else {
-//        ATOM_PWM_SetDuty(MOTOR1_N, motor, MOTOR_FREQUENCY);
-//    }
-//
-//}
 
 void Balance(void)
 {
+    char txt[16];
 //    int  Servo_PWM;                             // 舵机PID
     /* 获取编码器值 */
-    ECPULSE2 = ENC_GetCounter(ENC4_InPut_P02_8); // 后轮反馈     母板编码器2
+    ECPULSE1 = ENC_GetCounter(ENC4_InPut_P02_8); // 后轮反馈     母板编码器2
     LQ_DMP_Read();//pitch 左负右正
 //    Seek_Road();  // 获取赛道颜色偏差
 //    TempAngle = OFFSET2+OFFSET2+OFFSET1;    // 计算赛道颜色偏差值
@@ -87,29 +78,46 @@ void Balance(void)
     else if(PWM_X<-8000)PWM_X = -8000;
     if(PWM_accel>8000) PWM_accel=8000;
     else if(PWM_accel<-8000) PWM_accel=-8000;
+    if(KEY_Read(KEY0)==0) Start_Flag = 1;
     MotorDutyA = -(PWM_X-PWM_accel);//BLDCduty= Velocity_Momentum(distence,ECPULSE1);
 
     if(MotorDutyA>8000) MotorDutyA=8000;        // 动量轮电机限幅
     else if(MotorDutyA<-8000) MotorDutyA=-8000; // 动量轮电机限幅
-    else if(MotorDutyA<0) MotorDutyA -=2000;    // 死区
-    else if(MotorDutyA>0) MotorDutyA+=2000;      // 死区
+//    else if(MotorDutyA<0) MotorDutyA -=2000;    // 死区
+//    else if(MotorDutyA>0) MotorDutyA+=2000;      // 死区
+    if((MotorDutyA<1000)&&(MotorDutyA>-1000))
+                MotorDutyA=0;
+
+//    CAMERA_Init(100);
     ///////// 舵机电机控制///////
 //    if( Servo_PWM < - Servo_Delta)    Servo_PWM = - Servo_Delta;  // 舵机角度限制
 //    else if(Servo_PWM > Servo_Delta)  Servo_PWM =   Servo_Delta;  // 舵机角度限制
 //    PWMServo = Servo_Center_Mid - TempAngle /13;                      // 转换为舵机控制PWM
 //    MotorDutyB = SBB_Get_MotorPI(ECPULSE2, Velocity)/5;           // 电机增量式PI控制
-    if((Pitch > 23) || (Pitch < -23))       // 摔倒停车判断
+    if((Pitch > 24) || (Pitch < -20))       // 摔倒停车判断
        Flag_Stop = 1;
+    else Flag_Stop = 0;
+    if(KEY_Read(KEY1)==0){
+        Flag_Stop = 1;
+        Start_Flag = 0;
+        MotorDutyA = 0;
+    }
     if(Flag_Stop == 1)                       // 停车
     {
         MotorDutyA = 0;                      // 电机关闭
         MotorDutyB = 0;                      // 电机关闭
         Integration = 0;                     // 积分参数归零
     }
+    sprintf((char*)txt,"DutyA:%05d",MotorDutyA);//倾斜角
+    TFTSPI_P8X16Str(1,5,txt,u16WHITE,u16BLACK);
+    sprintf((char*)txt,"ECPULSE1:%05d",ECPULSE1);//倾斜角
+    TFTSPI_P8X16Str(1,4,txt,u16WHITE,u16BLACK);
 //    ServoCtrl(PWMServo);                    // 舵机控制
-//    MotorCtrl(MotorDutyA,0);                // 后轮电机控制
+    if(Start_Flag == 1)
+    MotorCtrl(MotorDutyA,0);                // 后轮电机控制
+    else MotorCtrl(0,0);
 //    Motor_HHH(MotorDutyA);
-    Motor_konzhi(MotorDutyA);
+//    Motor_konzhi(MotorDutyA);
 
 }
 
@@ -141,9 +149,9 @@ float Velocity_Control(int encoder)
     Encoder *= 0.7;                                                           //一阶低通滤波器
     Encoder += Encoder_Least*0.3;                                             //一阶低通滤波器
     Encoder_Integral += Encoder;                                              //积分出位移
-    if(Encoder_Integral > +2000) Encoder_Integral = +2000;                    //积分限幅
-    if(Encoder_Integral < -2000) Encoder_Integral = -2000;                    //积分限幅
-    Velocity = Encoder * X_Velocity_KP + Encoder_Integral * X_Velocity_KI/100;//获取最终数值
+    if(Encoder_Integral > +2000) Encoder_Integral = +2000;                    //积分限幅2000
+    if(Encoder_Integral < -2000) Encoder_Integral = -2000;                    //积分限幅2000
+    Velocity = encoder * X_Velocity_KP + Encoder_Integral * X_Velocity_KI/100;//获取最终数值
     if(Flag_Stop==1) Encoder_Integral=0,Encoder=0,Velocity=0;                //停止时参数清零
     return Velocity;
 }

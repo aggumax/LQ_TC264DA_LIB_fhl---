@@ -24,8 +24,8 @@ QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ*/
 #define __LQ_MT9V034_H_
 
 
-#define MT9V034_IMAGEH  120  /*!< 行 HEIGHT 待采集摄像头图像高度行数 */
-#define MT9V034_IMAGEW  188  /*!< 列 WIDTH  待采集摄像头图像宽度列数 */
+#define MT9V034_IMAGEH  120  /*120!< 行 HEIGHT 待采集摄像头图像高度行数 */
+#define MT9V034_IMAGEW  188  /*188!< 列 WIDTH  待采集摄像头图像宽度列数 */
 
 /*! 对比度 高对比度0x03c7  低对比度0x01c7  注意 高对比度会使图像变暗 */
 #define CAMERA_CONTRAST          0x01c7

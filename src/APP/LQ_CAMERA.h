@@ -39,8 +39,8 @@ QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ*/
 	#define LCDH    60  /*!< OLED显示高度（用户使用）高度 */
 	#define LCDW    80  /*!< OLED显示宽度（用户使用）宽度 */
 #else
-	#define LCDH    120  /*!< TFT显示高度（用户使用）高度 */
-	#define LCDW    160  /*!< TFT显示宽度（用户使用）宽度 */
+	#define LCDH    60  /*!< TFT显示高度（用户使用）高度  60*/
+	#define LCDW    120  /*!< TFT显示宽度（用户使用）宽度 100*/
 #endif
 
 //#define SMALLIMAGE  // 使用小尺寸显示60*94
@@ -64,7 +64,7 @@ extern unsigned char Bin_Image[LCDH][LCDW];
   *
   * @return   无
   *
-  * @note     上位机的帧头可能有所区别 
+  * @note     上位机的帧头可能有所区别
   *
   * @see      CAMERA_Reprot();
   *
@@ -77,7 +77,7 @@ void CAMERA_Reprot(void);
 /*!
   * @brief    摄像头测试例程
   *
-  * @param    fps:  帧率 
+  * @param    fps:  帧率
   *
   * @return   无
   *
@@ -124,7 +124,7 @@ void Get_Bin_Image(unsigned char mode);
 
 
 /*!
-  * @brief    大津法求阈值大小 
+  * @brief    大津法求阈值大小
   *
   * @param    tmImage ： 图像数据
   *

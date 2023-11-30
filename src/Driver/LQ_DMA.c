@@ -47,6 +47,7 @@ Dma_Camera_t g_DmaCameraLinkedList;
 
 /** 摄像头 数据采集完成标志位 */
 unsigned char Camera_Flag = 0;
+//unsigned char Camera_Flag_2 = 0;
 
 
 

@@ -141,9 +141,7 @@ void CCU61_CH0_IRQHandler (void)
 //    ECPULSE1 = ENC_GetCounter(ENC2_InPut_P33_7); // 左电机 母板上编码器1，小车前进为负值
 //    ECPULSE2 = ENC_GetCounter(ENC4_InPut_P02_8); // 右电机 母板上编码器2，小车前进为正值
 //    RAllPulse += ECPULSE2;                       //
-//    LQ_Atom_Motor_8chPWM
-//    Balance();
-//    Balance_FHL_Chuangji();
+    Balance();
     LQ_DMP_Read();
 
     LED_Ctrl(LED0, RVS);

@@ -30,7 +30,7 @@ void PID_init(FHL_PID_DJ *pid)
 {
     pid->kp1 = 40;
     pid->ki1 = 0;
-    pid->kd1 = 0;
+    pid->kd1 = 10;
 
     pid->jifen1 =0;
     pid->weifen1=0;
