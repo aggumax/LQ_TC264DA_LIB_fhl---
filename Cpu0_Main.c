@@ -119,11 +119,7 @@ int core0_main (void)
 //  LQ_Atom_Motor_8chPWM();
     // LQ_ATom_Servo_2chPWM();
 //	Test_CAMERA();
-<<<<<<< Updated upstream
 //	CAMERA_Init(50);
-=======
-
->>>>>>> Stashed changes
     while (1)	//主循环
     {
 //        TFTSPI_P8X16Str(3, 0, "GUMAX_FHL", u16BLACK, u16YELLOW);
@@ -134,28 +130,16 @@ int core0_main (void)
 //        if(KEY_Read(KEY1)==0) kaishi=0;
 //        if(kaishi)Balance_FHL_Chuangji();
 //        FHL_servo();
-<<<<<<< Updated upstream
 //        sprintf((char*)txt,"Yaw:%.02f",Yaw);//偏航角
 //        TFTSPI_P8X16Str(0,1,txt,u16BLACK,u16WHITE);//
 //        sprintf((char*)txt,"MotorDuty111:%.02f",MotorDuty111);//俯仰角
 //        TFTSPI_P8X16Str(0,5,txt,u16BLACK,u16WHITE);
         sprintf((char*)txt,"Pitch:%.02f",Pitch);//倾斜角
         TFTSPI_P8X16Str(1,6,txt,u16WHITE,u16BLACK);
-=======
-        sprintf((char*)txt,"Yaw:%.02f",Yaw);//偏航角
-        TFTSPI_P8X16Str(0,1,txt,u16BLACK,u16WHITE);//
-        //sprintf((char*)txt,"MotorDuty111:%.02f",MotorDuty111);//俯仰角
-        //TFTSPI_P8X16Str(0,5,txt,u16BLACK,u16WHITE);
-        sprintf((char*)txt,"Pitch:%.02f",Pitch);//倾斜角
-        TFTSPI_P8X16Str(0,2,txt,u16WHITE,u16BLACK);
-        sprintf((char*)txt,"Roll:%.02f",Roll);//倾斜角
-        TFTSPI_P8X16Str(0,3,txt,u16WHITE,u16BLACK);
->>>>>>> Stashed changes
 //        sprintf((char*)txt,"enc:%05d",enc_222);//倾斜角
 //        TFTSPI_P8X16Str(0,3,txt,u16WHITE,u16BLACK);
         float GG =gyro[0];
         sprintf((char*)txt,"gyro:%.02f",GG);//
-<<<<<<< Updated upstream
         TFTSPI_P8X16Str(1,7,txt,u16WHITE,u16BLACK);
 //        if(Camera_Flag==2)
 //                         {
@@ -166,18 +150,6 @@ int core0_main (void)
 //                        Camera_Flag = 0;
 //
 //                         }
-=======
-        TFTSPI_P8X16Str(0,4,txt,u16WHITE,u16BLACK);
-        float GG1 =gyro[1];
-        sprintf((char*)txt,"gyro:%.02f",GG1);//
-        TFTSPI_P8X16Str(0,5,txt,u16WHITE,u16BLACK);
-        float GG2 =gyro[2];
-        sprintf((char*)txt,"gyro:%.02f",GG2);//
-        TFTSPI_P8X16Str(0,6,txt,u16WHITE,u16BLACK);
-
-
-
->>>>>>> Stashed changes
 
 //        TFTSPI_P8X16Str(12,9,"@FHL",u16WHITE,u16BLACK);
 //        image_process();
