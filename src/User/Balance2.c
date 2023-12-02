@@ -80,6 +80,13 @@ void PID_init(FHL_PID_DJ *pid)
     pid->weifens=0;
     pid->outs=0;
 
+    pid->kpjd = 0;
+    pid->kijd = 0;
+    pid->kdjd = 0;
+    pid->jifenjd =0;
+    pid->weifenjd=0;
+    pid->outjd=0;
+
 }
 
 /*********************************************************
@@ -166,25 +173,25 @@ int16 Speed(FHL_PID_DJ *pid, int enc_Donlian, int qiwan)
 }
 
 /********************************************
-@平衡函数的速度环
-@enc_Donlian：动量轮的数值
+@平衡函数的角度环
+@enc_Donlian：角度Pitch的数值
 @qiwan:期望值
 *********************************************/
-int16 Jiaodu(FHL_PID_DJ *pid, int enc_Donlian, int qiwan)
+int16 Jiaodu(FHL_PID_DJ *pid, int Pitch, int qiwan)
 {
     float error;
-    error = qiwan - enc_Donlian;
+    error = qiwan - Pitch;
     float last_error;
 
-    pid->jifens +=error;
-    if(pid->jifens > 20) pid->jifens=20;
-    if(pid->jifens < -20) pid->jifens=-20;
-    pid->weifens = last_error;
+    pid->jifenjd +=error;
+    if(pid->jifenjd > 20) pid->jifenjd=20;
+    if(pid->jifenjd < -20) pid->jifenjd=-20;
+    pid->weifenjd = last_error;
 
-    pid->outs = error*pid->kps + pid->jifens*pid->kis + pid->weifens*pid->kds;
+    pid->outjd = error*pid->kpjd + pid->jifenjd*pid->kijd + pid->weifenjd*pid->kdjd;
     last_error = error;
 
-    return pid->outs;
+    return pid->outjd;
 }
 
 
